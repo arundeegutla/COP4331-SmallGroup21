@@ -1,6 +1,9 @@
 
 <?php
 
+	header('Access-Control-Allow-Origin: *');
+	header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+	header('Access-Control-Allow-Methods: GET, POST, PUT');
 	$inData = getRequestInfo();
 	
 	$id = 0;
@@ -14,8 +17,8 @@
 	}
 	else
 	{
-		$stmt = $conn->prepare("SELECT ID,FirstName,LastName FROM Users WHERE Login=? AND Password =?");
-		$stmt->bind_param("ss", $inData["Login"], $inData["Password"]);
+		$stmt = $conn->prepare("SELECT ID,FirstName,LastName FROM Users WHERE Username=? AND Passwd =?");
+		$stmt->bind_param("ss", $inData["Username"], $inData["Passwd"]);
 		$stmt->execute();
 		$result = $stmt->get_result();
 
