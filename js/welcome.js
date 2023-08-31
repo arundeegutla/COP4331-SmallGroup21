@@ -5,6 +5,26 @@ let userId = 0;
 let firstName = "";
 let lastName = "";
 
+$(function () {
+    readCookie();
+    $('#get-started').click(function () {
+        $('#modal-container').removeAttr('class').addClass("two");
+        $('body').addClass('modal-active');
+        $('.xbackground').show();
+    });
+    $('#close-modal').click(function () {
+        $('#modal-container').addClass('out');
+        $('body').removeClass('modal-active');
+        $('.xbackground').hide();
+    });
+    $('#radio-1').click(function(){
+        $('#modal').removeClass('right-panel-active');
+    });
+    $('#radio-2').click(function(){
+        $('#modal').addClass('right-panel-active');
+    });
+});
+
 function createNewUser() {
     userId = -1;
     firstName = document.getElementById("fname").value;
@@ -12,7 +32,7 @@ function createNewUser() {
     let username = document.getElementById("new-uname").value;
     let password = document.getElementById("new-pswd").value;
 
-    let jsonPayload = JSON.stringify({
+    let newUserInfoPayload = JSON.stringify({
         FirstName: firstName,
         LastName: lastName,
         Username: username,
@@ -35,12 +55,12 @@ function createNewUser() {
                     return;
                 }
                 saveCookie();
+                readCookie();
                 returnValue.innerHTML = "Hi, " + firstName + " " + lastName + "!";
                 // document.getElementById("signup-form").submit();
-                // window.location.href = "https://arundeegutla.me/";
             }
         };
-        xhr.send(jsonPayload);
+        xhr.send(newUserInfoPayload);
     }
     catch (err) {
         returnValue.innerHTML = err.message;
@@ -48,7 +68,7 @@ function createNewUser() {
 }
 
 
-function doLogin() {
+function userLogin() {
     userId = -1;
     firstName = "";
     lastName = "";
@@ -81,8 +101,8 @@ function doLogin() {
                 lastName = jsonObject.LastName;
                 saveCookie();
                 document.getElementById("login-result").innerHTML = "Hi, " + firstName + " " + lastName + "!";
-                // document.getElementById("login-form").submit();
-                // window.location.href = "https://arundeegutla.me/";
+                readCookie();
+                readCookie();
             }
         };
         xhr.send(jsonPayload);
@@ -116,83 +136,8 @@ function readCookie() {
             userId = parseInt(tokens[1].trim());
         }
     }
-
-    if (userId < 0) {
-        window.location.href = "index.html";
+    
+    if (userId >= 0) {
+        window.location.href = "home.html"
     }
-    else {
-        document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
-    }
-}
-
-function doLogout() {
-    userId = 0;
-    firstName = "";
-    lastName = "";
-    document.cookie = "firstName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
-    window.location.href = "index.html";
-}
-
-function addColor() {
-    let newColor = document.getElementById("colorText").value;
-    document.getElementById("colorAddResult").innerHTML = "";
-
-    let tmp = { color: newColor, userId, userId };
-    let jsonPayload = JSON.stringify(tmp);
-
-    let url = urlBase + '/AddColor.' + extension;
-
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-    try {
-        xhr.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("colorAddResult").innerHTML = "Color has been added";
-            }
-        };
-        xhr.send(jsonPayload);
-    }
-    catch (err) {
-        document.getElementById("colorAddResult").innerHTML = err.message;
-    }
-
-}
-
-function searchColor() {
-    let srch = document.getElementById("searchText").value;
-    document.getElementById("colorSearchResult").innerHTML = "";
-
-    let colorList = "";
-
-    let tmp = { search: srch, userId: userId };
-    let jsonPayload = JSON.stringify(tmp);
-
-    let url = urlBase + '/SearchColors.' + extension;
-
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-    try {
-        xhr.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("colorSearchResult").innerHTML = "Color(s) has been retrieved";
-                let jsonObject = JSON.parse(xhr.responseText);
-
-                for (let i = 0; i < jsonObject.results.length; i++) {
-                    colorList += jsonObject.results[i];
-                    if (i < jsonObject.results.length - 1) {
-                        colorList += "<br />\r\n";
-                    }
-                }
-
-                document.getElementsByTagName("p")[0].innerHTML = colorList;
-            }
-        };
-        xhr.send(jsonPayload);
-    }
-    catch (err) {
-        document.getElementById("colorSearchResult").innerHTML = err.message;
-    }
-
 }

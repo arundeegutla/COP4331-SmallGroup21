@@ -13,10 +13,8 @@
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
         crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
-    <link rel='stylesheet' type='text/css' media='screen' href='css/main.css'>
-    <script src='js/main.js'></script>
-    <script src='js/code.js'></script>
-
+    <link rel='stylesheet' type='text/css' media='screen' href='css/welcome.css'>
+    <script src='js/welcome.js'></script>
 </head>
 
 <body>
@@ -32,48 +30,17 @@
 
 
 
-    <section class="home" id="home-section" onclick="hideSignInModal()">
+    <section class="home" id="home-section">
         <div class="container">
             <h2>Access all of your contacts and connect.</h2>
         </div>
     </section>
 
-    <!-- <div class="login-container" id="modal-container">
-        <div class="modal-background">
-            <div class="modal">
-                <div class="xicon">
-                    <img src="images/xicon.webp" width="30px" height="30px" id="close-modal">
-                </div>
-                <div class="button-container">
-                    <div class="tabs">
-                        <input type="radio" id="radio-1" name="tabs" />
-                        <label class="tab" for="radio-1">Log In</label>
-                        <input type="radio" id="radio-2" name="tabs" />
-                        <label class="tab" for="radio-2">Sign Up</label>
-                        <span class="glider"></span>
-                    </div>
-                </div>
-                <div class="login">
-                    <div class="login-type"></div>
-                    <div class="text-input">
-                        <input id="loginName" type="text" placeholder="Username">
-                    </div>
-                    <div class="text-input">
-                        <input id="loginPassword" type="password" placeholder="Password">
-                    </div>
-                    <button class="login-btn" onclick="doLogin()">Log In</button>
-                </div>
-                <h2 id="loginResult" style="color: black;">Result</h2>
-            </div>
-        </div>
-    </div> -->
-
-
-
 
     <div id="modal-container">
         <div class="modal-background">
             <div class="modal modal-container" id="modal">
+                <!-- sign up -->
                 <div class="form-container sign-up-container">
                     <form id="signup-form" class="login" autocomplete="on">
                         <h1>Sign Up</h1>
@@ -84,14 +51,16 @@
                         <button type="button" class="login-btn" onclick="createNewUser()">Sign Up</button>
                     </form>
                 </div>
+                <!-- sign in -->
                 <div class="form-container sign-in-container">
                     <form id="login-form" class="login" autocomplete="on">
                         <h1>Log In</h1>
                         <input type="text" id="username" name="username" placeholder="Username">
                         <input type="password" id="cur-password" name="current-password" placeholder="Password" autocomplete="current-password">
-                        <button type="button" class="login-btn" onclick="doLogin()">Log In</button>
+                        <button type="button" class="login-btn" onclick="userLogin()">Log In</button>
                     </form>
                 </div>
+                <!-- overlays -->
                 <div class="overlay-container">
                     <div class="overlay">
                         <div class="overlay-panel overlay-left">
@@ -102,6 +71,7 @@
                         </div>
                     </div>
                 </div>
+                <!-- radio buttons -->
                 <div class="button-container">
                     <div class="tabs">
                         <input type="radio" id="radio-1" checked="checked" name="tabs" />
@@ -113,11 +83,9 @@
                 </div>
             </div>
         </div>
+        <!-- blur background -->
         <div class="xbackground" id="close-modal"></div>
     </div>
-
-
-
 
 </body>
 
