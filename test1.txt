@@ -1,0 +1,11 @@
+OPTIONS /LAMPAPI/Login.php HTTP/1.1
+Accept: */*
+Accept-Encoding: gzip, deflate
+Accept-Language: en-US,en;q=0.9
+Access-Control-Request-Headers: content-type
+Access-Control-Request-Method: POST
+Connection: keep-alive
+Host: smallgroup21.xyz
+Origin: null
+Sec-Fetch-Mode: cors
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36
