@@ -5,15 +5,19 @@ let userId = 0;
 let firstName = "";
 let lastName = "";
 
-$(function () {
+
+
+$(document).ready(function() {
     readCookie();
     $('#get-started').click(function () {
+        $("#modal-container").css("display", "table");
         $('#modal-container').removeAttr('class').addClass("two");
         $('body').addClass('modal-active');
         $('.xbackground').show();
     });
     $('#close-modal').click(function () {
         $('#modal-container').addClass('out');
+        $("#modal-container").css("display", "none");
         $('body').removeClass('modal-active');
         $('.xbackground').hide();
     });
@@ -138,6 +142,8 @@ function readCookie() {
     }
     
     if (userId >= 0) {
-        window.location.href = "home.html"
+        window.location.href = "contacts.html"
+    } else {
+        $(".loader").css("display", "none");
     }
 }

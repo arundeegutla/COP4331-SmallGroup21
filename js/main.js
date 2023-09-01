@@ -2,12 +2,23 @@ let userId = 0;
 let firstName = "";
 let lastName = "";
 
-$(function () {
+
+
+$(document).ready(function () {
     readCookie();
-    $('#Name').click(function () {
+    $('#log-out-btn').click(function () {
         doLogout();
     });
+
+    $('.mini-contact').click(function(){
+        alert($(this).attr('id'));
+    });
+
+    
+
 });
+
+
 
 function readCookie() {
     userId = -1;
@@ -31,8 +42,7 @@ function readCookie() {
         window.location.href = "index.html"
         return;
     }
-    var name = document.getElementById("Name");
-    name.innerHTML = firstName;
+    $(".loader").css("display", "none");
 }
 
 
