@@ -62,13 +62,67 @@ body.modal-active {
 }
 
 body {
-    background-color: rgb(11, 48, 100);
     font-family: "Poppins", Arial, sans-serif;
     color: white;
+    overflow: hidden;
+    background-color: black;
+}
+
+.bg-image {
+    display: block;
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+}
+
+.bg-image .effect {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backdrop-filter: sepia(0.3) blur(10px);
+    -webkit-backdrop-filter: sepia(0.3) blur(10px);
+
+    background-color: rgba(0, 0, 0, 0.415);
+    backdrop-filter: blur(26px);
+    -webkit-backdrop-filter: blur(26px);
+
+    /* backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(8px); */
+}
+
+.loader {
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    display: flex;
+    align-items: center;
+    z-index: 100000;
+    background-color: var(--black);
+    position: absolute;
+}
+
+.loader svg {
+    margin: auto;
+}
+
+svg path,
+svg rect {
+    fill: #FF6700;
 }
 
 .navbar {
     z-index: 10000;
+    background-color: rgba(0, 0, 0, 0.415);
+    backdrop-filter: blur(50px);
+    -webkit-backdrop-filter: blur(50px);
+
 }
 
 .navbar .logo {
@@ -91,16 +145,23 @@ body {
 }
 
 .navbar .nav-links {
+    display: flex;
+    align-items: center;
     padding: 0;
     margin: 0;
 }
+
 .nav-link {
     list-style: none;
     text-decoration: none;
 }
 
 .navbar .container {
-    margin-top: 10px;
+    margin: auto;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    height: 50px;
 }
 
 .nav-item {
@@ -128,62 +189,145 @@ body {
 }
 
 .home {
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-    height: 100vh;
+    height: calc(100vh - 61px);
+    width: 100vw;
     position: absolute;
-    width: 100%;
     z-index: 0;
-    height: 100vh;
-    min-height: fit-content;
-    top: 0;
-    left: 0;
+    display: flex;
     align-items: center;
 }
 
 .home .container {
-    position: absolute;
-    width: fit-content;
-    top: 50%;
-    left: 0;
-    right: 0;
-    max-width: 900px;
-    padding-left: 0;
-    margin-left: 30px;
-    -webkit-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
-}
-
-form#contact-search-box {
-    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0;
     display: flex;
-    width: 30rem;
-    height: fit-content;
-    border-radius: 50px;
-    background-color: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    flex-direction: row;
+    justify-content: flex-start;
     overflow: hidden;
 }
 
+.home .container .contacts-container {
+    padding: 5px;
+    width: 25%;
+    height: 100%;
+    border-right: 1px solid rgba(78, 78, 71, 0.451);
+}
+
+.home .container .profile-container {
+    width: 75%;
+    height: 100%;
+    
+    
+}
+
+.mini-contact{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.mini-contact .icons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: rgb(132, 184, 132);
+    font-size: 20px;
+    text-align: center;
+}
+
+.mini-contact .icons .icon {
+    display: flex;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 16px;
+    margin: 0 2px;
+}
+
+.mini-contact .icons .icon span{
+    margin: auto;
+}
+
+.mini-contact .icons .icon:hover {
+    background-color: #2324246b;
+}
+
+form#contact-search-box {
+    margin-top: 10px;
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: fit-content;
+    border-radius: 11px;
+    padding-right: 20px;
+
+}
+
 form#contact-search-box input[type=search] {
+    height: 40px;
+    width: 100%;
+    border-radius: 11px;
+    
     outline: 0;
     font-size: 0.8rem;
-    border-radius: 50px;
     color: var(--black);
-    height: 40px;
     border: 0;
     background-color: transparent;
-    width: 100%;
-    padding: 0 1.6rem;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
+    padding: 0 1rem;
+
     position: relative;
+
+    background-color: rgba(255, 255, 255, 0.228);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
 }
 
 form#contact-search-box input:focus {
-    background-color: white;
+    color: white;
+    background-color: rgba(255, 255, 255, 0.091);
+}
+
+#contacts {
+    width: 100%;
+    height: 90%;
+    overflow: visible;
+    overflow-y:scroll;
+    padding-right: 20px;
+}
+
+#contacts ul{
+    margin-top: 10px;
+    list-style: none;
+    padding: 0;
+    height: 90%;
+    width: 100%;
+}
+
+#contacts ul li{
+    padding: 0px 4px 0 20px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    /* border-bottom: 1px solid gray; */
+    -webkit-transition: all 0.2s ease-in;
+    transition: all 0.2s ease-in;
+    -o-transition: all 0.2s ease-in;
+    transition: all 0.2s ease-in;
+    transition: all 0.2s ease-in, -webkit-transform 0.2s ease-in;
+    border-radius: 20px;
+
+}
+
+#contacts ul li:hover{
+    cursor: pointer;
+    background-color: #a0a5aa6d;
 }
