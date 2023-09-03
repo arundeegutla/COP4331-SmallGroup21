@@ -1,3 +1,4 @@
+
 <?php
 
 	if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
@@ -13,40 +14,41 @@
 	header('Access-Control-Allow-Origin: *');
 	header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 	header('Access-Control-Allow-Methods: POST');
-	
+
 	$inData = getRequestInfo();
 	
+	$id = 0;
 	$firstName = $inData["FirstName"];
 	$lastName = $inData["LastName"];
-	$username = $inData["Username"];
-	$passwd = $inData["Passwd"];
+	$phoneNum = $inData["PhoneNum"];
+	$email = $inData["Email"];
+	$userId = $inData["UserID"];
 
-	$conn = new mysqli("localhost", "SmallGroup21", "group21COP4331", "COP4331"); 
-	if ($conn->connect_error) 
+	$conn = new mysqli("localhost", "SmallGroup21", "group21COP4331", "COP4331"); 	
+	if( $conn->connect_error )
 	{
 		returnWithError( $conn->connect_error );
-	} 
+	}
 	else
 	{
-		$stmt = $conn->prepare("INSERT into Users (FirstName,LastName,Username,Passwd) VALUES(?,?,?,?)");
-		$stmt->bind_param("ssss", $firstName, $lastName, $username, $passwd);
+		$stmt = $conn->prepare("SELECT ID FROM Contacts WHERE FirstName=? AND LastName =? AND PhoneNum=? AND Email=? AND UserID=?");
+		$stmt->bind_param("sssss", $firstName, $lastName, $phoneNum, $email, $userId);
 		$stmt->execute();
-		$stmt->close();
-
-		$stmt2 = $conn->prepare("SELECT ID FROM Users WHERE Username=? AND Passwd =?");
-		$stmt2->bind_param("ss", $username, $passwd);
-		$stmt2->execute();
-		$result = $stmt2->get_result();
+		$result = $stmt->get_result();
 
 		if( $row = $result->fetch_assoc()  )
 		{
-			returnWithInfo( $row['ID'] );
+			returnWithInfo( $row['FirstName'], $row['LastName'], $row['ID'] );
+		}
+		else
+		{
+			returnWithError("No Records Found");
 		}
 
-		$stmt2->close();
+		$stmt->close();
 		$conn->close();
 	}
-
+	
 	function getRequestInfo()
 	{
 		return json_decode(file_get_contents('php://input'), true);
@@ -57,16 +59,16 @@
 		header('Content-type: application/json');
 		echo $obj;
 	}
-
-	function returnWithInfo( $id )
-	{
-		$retValue = '{"ID":"' . $id . '"}';
-		sendResultInfoAsJson( $retValue );
-	}
 	
 	function returnWithError( $err )
 	{
-		$retValue = '{"error":"' . $err . '"}';
+		$retValue = '{"ID":0,"FirstName":"","LastName":"","error":"' . $err . '"}';
+		sendResultInfoAsJson( $retValue );
+	}
+	
+	function returnWithInfo( $firstName, $lastName, $id )
+	{
+		$retValue = '{"ID":' . $id . ',"FirstName":"' . $firstName . '","LastName":"' . $lastName . '", "error":""}';
 		sendResultInfoAsJson( $retValue );
 	}
 	
