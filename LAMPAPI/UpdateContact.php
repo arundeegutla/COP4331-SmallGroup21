@@ -28,7 +28,7 @@
 
     $inData = getRequestInfo();
         
-    $search = $inData["search"];
+    $id = $inData["ID"];        // Given ID as input
     $firstName = $inData["FirstName"];
     $lastName = $inData["LastName"];
     $phoneNum = $inData["PhoneNum"];
@@ -41,21 +41,21 @@
     } 
     else
     {
-        // Find the Contact that is being updated
-        $stmt = $conn->prepare("SELECT * from Contacts where (FirstName like ? OR LastName like ?) AND UserID=?");
-		$name = "%" . $inData["search"] . "%";
-		$stmt->bind_param("sss", $name, $name, $inData["UserID"]);
-		$stmt->execute();
+        // // Find the Contact that is being updated
+        // $stmt = $conn->prepare("SELECT * from Contacts where (FirstName like ? OR LastName like ?) AND UserID=?");
+		// $name = "%" . $inData["search"] . "%";
+		// $stmt->bind_param("sss", $name, $name, $inData["UserID"]);
+		// $stmt->execute();
 
-        $result = $stmt->get_result();
+        // $result = $stmt->get_result();
 
-        if( $row = $result->fetch_assoc()  )
-		{
-			$id = $row["ID"];
-		else
-		{
-			returnWithError("No Records Found");
-		}
+        // if( $row = $result->fetch_assoc()  )
+		
+		// 	$id = $row["ID"];
+		// else
+		// {
+		// 	returnWithError("No Records Found");
+		// }
         
         // Update with new information
         $stmt = $conn->prepare("Update Contacts SET FirstName=?,LastName=?,PhoneNum=?,Email=? WHERE ID=?");
