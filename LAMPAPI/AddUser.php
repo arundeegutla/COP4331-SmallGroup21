@@ -46,6 +46,17 @@
 		}
 
 		$stmt->close();
+
+		$stmt2 = $conn->prepare("SELECT ID FROM Users WHERE Username=? AND Passwd =?");
+		$stmt2->bind_param("ss", $username, $passwd);
+		$stmt2->execute();
+		$result = $stmt2->get_result();
+
+		if( $row = $result->fetch_assoc()  )
+		{
+			returnWithInfo( $row['ID'] );
+		}
+
 		$stmt2->close();
 		$conn->close();
 	}
@@ -66,7 +77,7 @@
 		$retValue = '{"ID":"' . $id . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
-
+	
 	function returnWithError( $err )
 	{
 		$retValue = '{"error":"' . $err . '"}';
