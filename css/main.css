@@ -325,6 +325,173 @@ form#contact-search-box input:focus {
     background-color: rgba(255, 255, 255, 0.091);
 }
 
+form#profile-first-name-field {
+    margin-top: 150px;
+    position: relative;
+    display: flex;
+    width: 90%;
+    margin-left: 80px;
+    height: fit-content;
+    border-radius: 11px;
+    padding-right: 20px;
+
+}
+
+form#profile-first-name-field input[type=firstNameField] {
+    height: 40px;
+    width: 100%;
+    border-radius: 11px;
+    
+    outline: 0;
+    font-size: 0.8rem;
+    color: var(--black);
+    border: 0;
+    background-color: transparent;
+    padding: 0 1rem;
+
+    position: relative;
+
+    background-color: rgba(255, 255, 255, 0.228);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
+}
+
+form#profile-first-name-field input:focus {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.091);
+}
+
+form#profile-last-name-field {
+    margin-top: 50px;
+    position: relative;
+    display: flex;
+    width: 90%;
+    margin-left: 80px;
+    height: fit-content;
+    border-radius: 11px;
+    padding-right: 20px;
+
+}
+
+form#profile-last-name-field input[type=lastNameField] {
+    height: 40px;
+    width: 100%;
+    border-radius: 11px;
+    
+    outline: 0;
+    font-size: 0.8rem;
+    color: var(--black);
+    border: 0;
+    background-color: transparent;
+    padding: 0 1rem;
+
+    position: relative;
+
+    background-color: rgba(255, 255, 255, 0.228);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
+}
+
+form#profile-last-name-fieldinput:focus {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.091);
+}
+
+form#profile-email-field {
+    margin-top: 50px;
+    position: relative;
+    display: flex;
+    width: 90%;
+    margin-left: 80px;
+    height: fit-content;
+    border-radius: 11px;
+    padding-right: 20px;
+
+}
+
+form#profile-email-field input[type=emailField] {
+    height: 40px;
+    width: 100%;
+    border-radius: 11px;
+    
+    outline: 0;
+    font-size: 0.8rem;
+    color: var(--black);
+    border: 0;
+    background-color: transparent;
+    padding: 0 1rem;
+
+    position: relative;
+
+    background-color: rgba(255, 255, 255, 0.228);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
+}
+
+form#profile-email-fieldinput:focus {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.091);
+}
+
+form#profile-phone-field {
+    margin-top: 50px;
+    position: relative;
+    display: flex;
+    width: 90%;
+    margin-left: 80px;
+    height: fit-content;
+    border-radius: 11px;
+    padding-right: 20px;
+}
+
+form#profile-phone-field input[type=phoneField] {
+    height: 40px;
+    width: 100%;
+    border-radius: 11px;
+    
+    outline: 0;
+    font-size: 0.8rem;
+    color: var(--black);
+    border: 0;
+    background-color: transparent;
+    padding: 0 1rem;
+
+    position: relative;
+
+    background-color: rgba(255, 255, 255, 0.228);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
+}
+
+form#profile-phone-fieldinput:focus {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.091);
+}
+
 .contacts {
     width: 100%;
     height: 100%;
