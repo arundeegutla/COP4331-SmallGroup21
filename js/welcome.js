@@ -27,6 +27,11 @@ $(document).ready(function() {
     $('#radio-2').click(function(){
         $('#modal').addClass('right-panel-active');
     });
+
+    $('#login-form').submit(function(){
+        userLogin();
+    });
+
 });
 
 function createNewUser() {
@@ -51,7 +56,7 @@ function createNewUser() {
     try {
         xhr.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-
+                
                 let jsonObject = JSON.parse(xhr.responseText);
                 userId = jsonObject.ID;
                 if (userId < 1) {
@@ -76,19 +81,19 @@ function userLogin() {
     userId = -1;
     firstName = "";
     lastName = "";
-
+    
     let login = document.getElementById("username").value;
     let password = document.getElementById("cur-password").value;
-
+    
     let tmp = {
         Username: login,
         Passwd: password
     };
-
+    
     let jsonPayload = JSON.stringify(tmp);
-
+    
     let url = urlBase + '/Login.' + extension;
-
+    
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-Type", "application/json");
@@ -104,8 +109,6 @@ function userLogin() {
                 firstName = jsonObject.FirstName;
                 lastName = jsonObject.LastName;
                 saveCookie();
-                document.getElementById("login-result").innerHTML = "Hi, " + firstName + " " + lastName + "!";
-                readCookie();
                 readCookie();
             }
         };

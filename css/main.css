@@ -14,6 +14,15 @@ body {
     font-family: "Poppins", Arial, sans-serif;
 }
 
+body {
+    font-family: "Poppins", Arial, sans-serif;
+    color: white;
+    /* overflow: hidden; */
+    background-color: black;
+    width: 100%;
+    height: 100%;
+}
+
 html.modal-active,
 body.modal-active {
     overflow: hidden;
@@ -61,12 +70,7 @@ body.modal-active {
     --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
-body {
-    font-family: "Poppins", Arial, sans-serif;
-    color: white;
-    overflow: hidden;
-    background-color: black;
-}
+
 
 .bg-image {
     display: block;
@@ -122,6 +126,10 @@ svg rect {
     background-color: rgba(0, 0, 0, 0.415);
     backdrop-filter: blur(50px);
     -webkit-backdrop-filter: blur(50px);
+    height: 70px;
+    margin-bottom: 15px;
+    padding: 10px;
+    margin: auto;
 
 }
 
@@ -180,7 +188,7 @@ svg rect {
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
-    margin: auto;
+    height: fit-content;
 }
 
 .nav-item:hover {
@@ -189,12 +197,14 @@ svg rect {
 }
 
 .home {
-    height: calc(100vh - 61px);
+    margin-top: 10px;
+    height: calc(100vh - 80px);
     width: 100vw;
     position: absolute;
     z-index: 0;
     display: flex;
     align-items: center;
+    flex-direction: column;
 }
 
 .home .container {
@@ -212,6 +222,7 @@ svg rect {
     width: 25%;
     height: 100%;
     border-right: 1px solid rgba(78, 78, 71, 0.451);
+    position: relative;
 }
 
 .home .container .profile-container {
@@ -254,18 +265,79 @@ svg rect {
     background-color: #2324246b;
 }
 
+.add-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    height: fit-content;
+    width: 100%;
+    align-items: center;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    padding: 20px;
+}
+
 form#contact-search-box {
-    margin-top: 10px;
-    position: relative;
+    position: absolute;
     display: flex;
     width: 100%;
+    height: fit-content;
+    border-radius: 11px;
+    padding-right: 20px;
+    top: 0;
+}
+
+.searchbar-behind-box{
+    display: flex;
+    width: 100%;
+    height: 40px;
+    border-radius: 11px;
+    padding-right: 20px;
+}
+
+form#contact-search-box input[type=search] {
+    height: 40px;
+    width: 100%;
+    border-radius: 11px;
+    
+    outline: 0;
+    font-size: 0.8rem;
+    color: var(--black);
+    border: 0;
+    background-color: transparent;
+    padding: 0 1rem;
+
+
+    background-color: rgba(255, 255, 255, 0.228);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
+}
+
+form#contact-search-box input:focus {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.091);
+}
+
+form#profile-first-name-field {
+    margin-top: 150px;
+    position: relative;
+    display: flex;
+    width: 90%;
+    margin-left: 80px;
     height: fit-content;
     border-radius: 11px;
     padding-right: 20px;
 
 }
 
-form#contact-search-box input[type=search] {
+form#profile-first-name-field input[type=firstNameField] {
     height: 40px;
     width: 100%;
     border-radius: 11px;
@@ -290,28 +362,152 @@ form#contact-search-box input[type=search] {
     transition: all 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
 }
 
-form#contact-search-box input:focus {
+form#profile-first-name-field input:focus {
     color: white;
     background-color: rgba(255, 255, 255, 0.091);
 }
 
-#contacts {
+form#profile-last-name-field {
+    margin-top: 50px;
+    position: relative;
+    display: flex;
+    width: 90%;
+    margin-left: 80px;
+    height: fit-content;
+    border-radius: 11px;
+    padding-right: 20px;
+
+}
+
+form#profile-last-name-field input[type=lastNameField] {
+    height: 40px;
     width: 100%;
-    height: 90%;
+    border-radius: 11px;
+    
+    outline: 0;
+    font-size: 0.8rem;
+    color: var(--black);
+    border: 0;
+    background-color: transparent;
+    padding: 0 1rem;
+
+    position: relative;
+
+    background-color: rgba(255, 255, 255, 0.228);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
+}
+
+form#profile-last-name-fieldinput:focus {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.091);
+}
+
+form#profile-email-field {
+    margin-top: 50px;
+    position: relative;
+    display: flex;
+    width: 90%;
+    margin-left: 80px;
+    height: fit-content;
+    border-radius: 11px;
+    padding-right: 20px;
+
+}
+
+form#profile-email-field input[type=emailField] {
+    height: 40px;
+    width: 100%;
+    border-radius: 11px;
+    
+    outline: 0;
+    font-size: 0.8rem;
+    color: var(--black);
+    border: 0;
+    background-color: transparent;
+    padding: 0 1rem;
+
+    position: relative;
+
+    background-color: rgba(255, 255, 255, 0.228);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
+}
+
+form#profile-email-fieldinput:focus {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.091);
+}
+
+form#profile-phone-field {
+    margin-top: 50px;
+    position: relative;
+    display: flex;
+    width: 90%;
+    margin-left: 80px;
+    height: fit-content;
+    border-radius: 11px;
+    padding-right: 20px;
+}
+
+form#profile-phone-field input[type=phoneField] {
+    height: 40px;
+    width: 100%;
+    border-radius: 11px;
+    
+    outline: 0;
+    font-size: 0.8rem;
+    color: var(--black);
+    border: 0;
+    background-color: transparent;
+    padding: 0 1rem;
+
+    position: relative;
+
+    background-color: rgba(255, 255, 255, 0.228);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
+}
+
+form#profile-phone-fieldinput:focus {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.091);
+}
+
+.contacts {
+    width: 100%;
+    height: 100%;
     overflow: visible;
     overflow-y:scroll;
     padding-right: 20px;
 }
 
-#contacts ul{
-    margin-top: 10px;
+.contacts ul{
     list-style: none;
     padding: 0;
-    height: 90%;
+    height: 100%;
     width: 100%;
 }
 
-#contacts ul li{
+.contacts ul li{
     padding: 0px 4px 0 20px;
     display: flex;
     align-items: center;
@@ -327,7 +523,21 @@ form#contact-search-box input:focus {
 
 }
 
-#contacts ul li:hover{
+.contacts ul li:hover{
     cursor: pointer;
     background-color: #a0a5aa6d;
 }
+
+.footer {
+    width: 100vw;
+    height: 70px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    bottom: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 20px;
+}
+
