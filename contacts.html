@@ -15,6 +15,7 @@
         crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/6625714bc9.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+
     <link rel='stylesheet' type='text/css' media='screen' href='css/main.css'>
     <script src='js/main.js'></script>
 </head>
@@ -22,7 +23,7 @@
 <body>
 
     <div class="bg-image">
-        <img src="/images/bg-image.jpg" width="100%" height="100%" />
+        <img id="bg-image-id" src="https://source.unsplash.com/random/?night,city" width="100%" height="100%" />
         <div class="effect"></div>
     </div>
 
@@ -46,6 +47,7 @@
     <nav class="navbar">
         <div class="container">
             <a class="logo" href="index.html">Contacts</a>
+            <a id="user-name">Arun Deegutla</a>
             <ul class="nav-links">
                 <li id="log-out-btn" class="nav-item nav-link">
                     <span>Log out</span>
@@ -59,139 +61,36 @@
     <section class="home" id="home-section">
         <div class="container">
             <div class="contacts-container">
-                <form id="contact-search-box" role="search">
-                    <input id="search" type="search" placeholder="Search" />
-                </form>
+            
+                <div class="contacts">
+                    
+                    <form id="contact-search-box" role="search">
+                        <input id="search-contact" type="search" placeholder="Search" />
+                    </form>
+                    
+                    
+                    <div class="searchbar-behind-box"></div>
+                    <ul id="contacts">
+                        
+                    </ul> 
+                </div>
 
-                <div id="contacts">
-                    <ul>
-                        <li id="1" class="mini-contact">
-                            <a>John Smith</a>
-                        </li>
-                        <li id="2" class="mini-contact">
-                            <a>Emily Johnson</a>
-                        </li>
-                        <li id="3" class="mini-contact">
-                            <a>Michael Williams</a>
-                        </li>
-                        <li id="4" class="mini-contact">
-                            <a>Sarah Brown</a>
-                        </li>
-                        <li id="5" class="mini-contact">
-                            <a>David Jones</a>
-                        </li>
-                        <li id="6" class="mini-contact">
-                            <a>Jessica Davis</a>
-                        </li>
-                        <li id="7" class="mini-contact">
-                            <a>Robert Taylor</a>
-                        </li>
-                        <li id="8" class="mini-contact">
-                            <a>Jennifer Martinez</a>
-                        </li>
-                        <li id="9" class="mini-contact">
-                            <a>William Anderson</a>
-                        </li>
-                        <li id="10" class="mini-contact">
-                            <a>Amanda Garcia</a>
-                        </li>
-                        <li id="11" class="mini-contact">
-                            <a>James Rodriguez</a>
-                        </li>
-                        <li id="12" class="mini-contact">
-                            <a>Melissa Martinez</a>
-                        </li>
-                        <li id="13" class="mini-contact">
-                            <a>Christopher Hernandez</a>
-                        </li>
-                        <li id="14" class="mini-contact">
-                            <a>Laura Martinez</a>
-                        </li>
-                        <li id="15" class="mini-contact">
-                            <a>Matthew Thompson</a>
-                        </li>
-                        <li id="16" class="mini-contact">
-                            <a>Elizabeth Davis</a>
-                        </li>
-                        <li id="17" class="mini-contact">
-                            <a>Daniel Miller</a>
-                        </li>
-                        <li id="18" class="mini-contact">
-                            <a>Ashley Martinez</a>
-                        </li>
-                        <li id="19" class="mini-contact">
-                            <a>Joseph Wilson</a>
-                        </li>
-                        <li id="20" class="mini-contact">
-                            <a>Stephanie Lewis</a>
-                        </li>
-                        <li id="21" class="mini-contact">
-                            <a>Andrew Martinez</a>
-                        </li>
-                        <li id="22" class="mini-contact">
-                            <a>Michelle Clark</a>
-                        </li>
-                        <li id="23" class="mini-contact">
-                            <a>Joshua Hall</a>
-                        </li>
-                        <li id="24" class="mini-contact">
-                            <a>Kimberly Rodriguez</a>
-                        </li>
-                        <li id="25" class="mini-contact">
-                            <a>Brian Adams</a>
-                        </li>
-                        <li id="26" class="mini-contact">
-                            <a>Nicole Lee</a>
-                        </li>
-                        <li id="27" class="mini-contact">
-                            <a>Ryan Wright</a>
-                        </li>
-                        <li id="28" class="mini-contact">
-                            <a>Samantha White</a>
-                        </li>
-                        <li id="29" class="mini-contact">
-                            <a>Kevin Scott</a>
-                        </li>
-                        <li id="30" class="mini-contact">
-                            <a>Heather Martinez</a>
-                        </li>
-                        <li id="31" class="mini-contact">
-                            <a>Jason Turner</a>
-                        </li>
-                        <li id="32" class="mini-contact">
-                            <a>Rebecca Baker</a>
-                        </li>
-                        <li id="33" class="mini-contact">
-                            <a>Benjamin Mitchell</a>
-                        </li>
-                        <li id="34" class="mini-contact">
-                            <a>Megan Stewart</a>
-                        </li>
-                        <li id="35" class="mini-contact">
-                            <a>Nicholas Lopez</a>
-                        </li>
-                        <li id="36" class="mini-contact">
-                            <a>Amanda Young</a>
-                        </li>
-                        <li id="37" class="mini-contact">
-                            <a>Timothy Martinez</a>
-                        </li>
-                        <li id="38" class="mini-contact">
-                            <a>Rachel Miller</a>
-                        </li>
-                        <li id="39" class="mini-contact">
-                            <a>Eric Allen</a>
-                        </li>
-                        <li id="40" class="mini-contact">
-                            <a>Lauren King</a>
-                        </li>
-                    </ul>
+                <div class="add-container">
+
+                    <span class="fa-solid fa-plus nav-item"></span>
+
                 </div>
 
             </div>
-            <div class="profile-container">
 
+
+            <div class="profile-container">
+                
             </div>
+            
+        </div>
+        <div class="footer">
+            <span id="refresh-background" class="fa-solid fa-arrows-rotate nav-item"></span>
         </div>
     </section>
 

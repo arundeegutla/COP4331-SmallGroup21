@@ -1,21 +1,31 @@
+const urlBase = 'http://smallgroup21.xyz/LAMPAPI';
+const extension = 'php';
+
+
 let userId = 0;
 let firstName = "";
 let lastName = "";
-
+var contacts;
 
 
 $(document).ready(function () {
     readCookie();
+    searchContact();
     $('#log-out-btn').click(function () {
-        doLogout();
+        logout();
     });
 
     $('.mini-contact').click(function(){
         alert($(this).attr('id'));
     });
 
-    
+    $("#search-contact").on('change keydown paste input', function(){
+        searchContact();
+    });
 
+    $('#refresh-background').click(function(){
+        window.location.href = "contacts.html";
+    });
 });
 
 
@@ -39,14 +49,15 @@ function readCookie() {
     }
 
     if (userId < 0) {
-        window.location.href = "index.html"
+        window.location.href = "index.html";
         return;
     }
+    $('#user-name').text(firstName + " " + lastName);
     $(".loader").css("display", "none");
 }
 
 
-function doLogout() {
+function logout() {
     userId = 0;
     firstName = "";
     lastName = "";
@@ -54,7 +65,7 @@ function doLogout() {
     window.location.href = "index.html";
 }
 
-function addColor() {
+function addContact() {
     let newColor = document.getElementById("colorText").value;
     document.getElementById("colorAddResult").innerHTML = "";
 
@@ -80,16 +91,39 @@ function addColor() {
 
 }
 
-function searchColor() {
-    let srch = document.getElementById("searchText").value;
-    document.getElementById("colorSearchResult").innerHTML = "";
+function refreshContacts(){
 
-    let colorList = "";
+    var list = document.getElementById("contacts");
+    list.innerHTML = '<li id="1" class="mini-contact"><a>John Smith</a><div class="icons"><div class="icon"><span class="fa-solid fa-phone"></span></div></div></li><li id="1" class="mini-contact"><a>John Smith</a><div class="icons"><div class="icon"><span class="fa-solid fa-star"></span></div></div></li>';
+    
+    for(var contact of contacts){
+        let mini = document.createElement('li');
+        mini.className = "mini-contact";
+        let aTag = document.createElement('a');
+        aTag.innerHTML = contact.FirstName + " " + contact.LastName;
+        mini.appendChild(aTag);
+        list.appendChild(mini);
+    }
+    for(var contact of contacts){
+        let mini = document.createElement('li');
+        mini.className = "mini-contact";
+        let aTag = document.createElement('a');
+        aTag.innerHTML = contact.FirstName + " " + contact.LastName;
+        mini.appendChild(aTag);
+        list.appendChild(mini);
+    }
+}
 
-    let tmp = { search: srch, userId: userId };
+function searchContact() {
+    contacts = [];
+    let srch = $("#search-contact").val();
+
+    let tmp = { 
+        search: srch, 
+        UserID: 7 
+    };
     let jsonPayload = JSON.stringify(tmp);
-
-    let url = urlBase + '/SearchColors.' + extension;
+    let url = urlBase + '/SearchContacts.' + extension;
 
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
@@ -97,17 +131,9 @@ function searchColor() {
     try {
         xhr.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("colorSearchResult").innerHTML = "Color(s) has been retrieved";
                 let jsonObject = JSON.parse(xhr.responseText);
-
-                for (let i = 0; i < jsonObject.results.length; i++) {
-                    colorList += jsonObject.results[i];
-                    if (i < jsonObject.results.length - 1) {
-                        colorList += "<br />\r\n";
-                    }
-                }
-
-                document.getElementsByTagName("p")[0].innerHTML = colorList;
+                contacts = jsonObject.results;
+                refreshContacts();
             }
         };
         xhr.send(jsonPayload);
@@ -115,4 +141,5 @@ function searchColor() {
     catch (err) {
         document.getElementById("colorSearchResult").innerHTML = err.message;
     }
+
 }
