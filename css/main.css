@@ -226,6 +226,7 @@ svg rect {
 }
 
 .home .container .profile-container {
+    display: none;
     width: 75%;
     height: 100%;
     
@@ -328,7 +329,7 @@ form#contact-search-box input:focus {
 form#profile-first-name-field {
     margin-top: 150px;
     position: relative;
-    display: flex;
+    display: flex; 
     width: 90%;
     margin-left: 80px;
     height: fit-content;
@@ -525,7 +526,8 @@ form#profile-phone-fieldinput:focus {
 
 .contacts ul li:hover{
     cursor: pointer;
-    background-color: #a0a5aa6d;
+    background-color: #a0a5aa6c;
+
 }
 
 .footer {

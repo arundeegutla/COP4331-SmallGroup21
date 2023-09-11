@@ -26,6 +26,13 @@ $(document).ready(function () {
     $('#refresh-background').click(function(){
         window.location.href = "contacts.html";
     });
+
+    $(".contacts").hover(function() {
+        $(".home .container .profile-container").css({"display":"block"});
+    }, function() {
+        $(".home .container .profile-container").css({"display":"none"});
+    });
+
 });
 
 
@@ -142,4 +149,11 @@ function searchContact() {
         document.getElementById("colorSearchResult").innerHTML = err.message;
     }
 
+}
+function showProfileContainer(){
+    document.getElementById('profileContainer').style.display = "block";
+}
+
+function hideProfileContainer(){
+    document.getElementById('profileContainer').style.display = "none";
 }
