@@ -27,10 +27,12 @@ $(document).ready(function () {
         window.location.href = "contacts.html";
     });
 
-    $(".contacts").hover(function() {
+    $('#add-contact-submit').click(function(){
+        addContact();
+    });
+
+    $(".add-container").click(function() {
         $(".home .container .profile-container").css({"display":"block"});
-    }, function() {
-        $(".home .container .profile-container").css({"display":"none"});
     });
 
 });
@@ -73,13 +75,25 @@ function logout() {
 }
 
 function addContact() {
-    let newColor = document.getElementById("colorText").value;
-    document.getElementById("colorAddResult").innerHTML = "";
+    let newContact = document.getElementById("contacts");
 
-    let tmp = { color: newColor, userId, userId };
-    let jsonPayload = JSON.stringify(tmp);
+    var contactFirstName = document.getElementById("firstNameField").value;
+    var contacLastName = document.getElementById("lastNameField").value;
+    var contactEmail = document.getElementById("emailField").value;
+    var contatPhone = document.getElementById("phoneField").value;
 
-    let url = urlBase + '/AddColor.' + extension;
+
+    if(contacLastName === "" || contacLastName === "" || contactEmail === "" || contatPhone === "") return;
+
+    let newUserInfoPayload = JSON.stringify({
+        FirstName: contactFirstName,
+        LastName: contacLastName,
+        PhoneNum: contatPhone,
+        Email: contactEmail,
+        UserID: userId
+    });
+
+    let url = urlBase + '/AddContact.' + extension;
 
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
@@ -87,15 +101,14 @@ function addContact() {
     try {
         xhr.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("colorAddResult").innerHTML = "Color has been added";
+                searchContact();
             }
         };
-        xhr.send(jsonPayload);
+        xhr.send(newUserInfoPayload);
     }
     catch (err) {
-        document.getElementById("colorAddResult").innerHTML = err.message;
+        document.getElementById("contactAddResult").innerHTML = err.message;
     }
-
 }
 
 function refreshContacts(){
@@ -125,9 +138,9 @@ function searchContact() {
     contacts = [];
     let srch = $("#search-contact").val();
 
-    let tmp = { 
+    let tmp = {
         search: srch, 
-        UserID: 7 
+        UserID: userId
     };
     let jsonPayload = JSON.stringify(tmp);
     let url = urlBase + '/SearchContacts.' + extension;
