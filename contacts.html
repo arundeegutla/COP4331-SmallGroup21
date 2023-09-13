@@ -23,7 +23,7 @@
 <body>
 
     <div class="bg-image">
-        <img id="bg-image-id" src="https://source.unsplash.com/random/?night,city" width="100%" height="100%" />
+        <img src="https://source.unsplash.com/random/?dark" width="100%" height="100%" />
         <div class="effect"></div>
     </div>
 
@@ -60,54 +60,81 @@
 
     <section class="home" id="home-section">
         <div class="container">
+
+            <!-- Left container -->
             <div class="contacts-container">
-            
+
                 <div class="contacts">
-                    
+
+                    <!-- Search Box -->
                     <form id="contact-search-box" role="search">
                         <input id="search-contact" type="search" placeholder="Search" />
                     </form>
-                    
-                    
-                    <div class="searchbar-behind-box"></div>
+
+                    <!-- IGNORE -->
+
+                    <!-- Contacts List -->
                     <ul id="contacts">
-                        
-                    </ul> 
+                        <div class="searchbar-behind-box"></div>
+                    </ul>
                 </div>
 
-                <div class="add-container">
-
-                    <span class="fa-solid fa-plus nav-item"></span>
-
+                <div class="footer-container">
+                    <span class="fa-solid fa-plus nav-item pop-up"></span>
                 </div>
 
             </div>
-            
-            <div class="profile-container" id="profileContainer">    
-                <form id="profile-first-name-field" role="firstNameField">
-                    <input id="firstNameField" type="firstNameField" placeholder="First Name" />
-                </form>
 
-                <form id="profile-last-name-field" role="lastNameField">
-                    <input id="lastNameField" type="lastNameField" placeholder="Last Name" />
-                </form>
+            <!-- Right container -->
+            <div class="profile-container" id="profileContainer">
 
-                <form id="profile-email-field" role="emailField">
-                    <input id="emailField" type="emailField" placeholder="Email" />
-                </form>
+                <div class="header">
+                    <div class="profile-img">
+                        <div class="initials">
+                            AD
+                        </div>
+                    </div>
+                    <div id="profile-name" class="profile-name">
+                        Arun Deegutla
+                    </div>
+                </div>
 
-                <form id="profile-phone-field" role="phoneField">
-                    <input id="phoneField" type="phoneField" placeholder="Phone" />
-                </form>
+                <div class="content">
+                    <ul class="profile-info-list">
 
-                <button type="button" class="nav-item" id="add-contact-submit" >
-                    <span>Add Contact</span>
-                </button>
+                        <li class="profile-info">
+                            <div class="icons"><div class="icon"><span class="fa-solid fa-phone"></span></div></div>
+                            <div id="profile-phone-num" class="info">+1(954)553-4243</div>
+                        </li>
+
+                        <li class="profile-info">
+                            <div class="icons"><div class="icon"><span class="fa-solid fa-envelope"></span></div></div>
+                            <div id="profile-email" class="info">arundeegutla@gmail.com</div>
+                        </li>
+
+                        <li class="profile-info">
+                            <div class="icons"><div class="icon"><span class="fa-brands fa-instagram"></span></div></div>
+                            <div id="profile-instagram" class="info">@arun.deegutla</div>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <div class="footer-container">
+                    <span class="fa-solid fa-pen nav-item pop-up"></span>
+                    <span class="fa-solid fa-trash-can nav-item red pop-up"></span>
+                </div>
+                <!-- <div style="display: inline-block;">
+                    <h1 id="profile-first-name">Arun</h1>
+                    <h1 id="profile-last-name">Deegutla</h1>
+                </div>
+
+                <a id="profile-phone">+1(954)553-4243</a>
+                <a id="profile-first-name">arundeegutla@gmail.com</a> -->
+
+
             </div>
-            
-        </div>
-        <div class="footer">
-            <span id="refresh-background" class="fa-solid fa-arrows-rotate nav-item"></span>
+
         </div>
     </section>
 
