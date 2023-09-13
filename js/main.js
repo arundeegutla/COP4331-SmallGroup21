@@ -82,7 +82,6 @@ function addContact() {
     var contactEmail = document.getElementById("emailField").value;
     var contatPhone = document.getElementById("phoneField").value;
 
-
     if(contacLastName === "" || contacLastName === "" || contactEmail === "" || contatPhone === "") return;
 
     let newUserInfoPayload = JSON.stringify({
