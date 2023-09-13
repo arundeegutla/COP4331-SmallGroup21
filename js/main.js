@@ -125,7 +125,7 @@ function getColor() {
     return pastelColor;
 }
 
-function displayContact(conttact_id) {
+const displayContact = (conttact_id) => {
 
     // for (const [key, value] of contactsMap.entries()) {
     //     console.log(key, value);
@@ -175,11 +175,9 @@ function searchContact(srch) {
 
     $('#search-loader').css({ "display": "flex" });
 
+    let tmp = { search: srch, UserID: userId };
+    
 
-    let tmp = {
-        search: srch,
-        UserID: userId
-    };
     let jsonPayload = JSON.stringify(tmp);
     let url = urlBase + '/SearchContacts.' + extension;
 
