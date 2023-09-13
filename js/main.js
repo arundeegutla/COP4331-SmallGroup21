@@ -6,6 +6,7 @@ let userId = 0;
 let firstName = "";
 let lastName = "";
 var contacts;
+var contactsMap;
 
 
 $(document).ready(function () {
@@ -15,24 +16,24 @@ $(document).ready(function () {
         logout();
     });
 
-    $('.mini-contact').click(function(){
+    $('.mini-contact').click(function () {
         alert($(this).attr('id'));
     });
 
-    $("#search-contact").on('change keydown paste input', function(){
-        searchContact();
+    $("#search-contact").on('change keydown paste input', function () {
+        searchContact($("#search-contact").val());
     });
 
-    $('#refresh-background').click(function(){
+    $('#refresh-background').click(function () {
         window.location.href = "contacts.html";
     });
 
-    $('#add-contact-submit').click(function(){
+    $('#add-contact-submit').click(function () {
         addContact();
     });
 
-    $(".add-container").click(function() {
-        $(".home .container .profile-container").css({"display":"block"});
+    $(".add-container").click(function () {
+        $(".home .container .profile-container").css({ "display": "block" });
     });
 
 });
@@ -74,6 +75,7 @@ function logout() {
     window.location.href = "index.html";
 }
 
+
 function addContact() {
     let newContact = document.getElementById("contacts");
 
@@ -82,7 +84,8 @@ function addContact() {
     var contactEmail = document.getElementById("emailField").value;
     var contatPhone = document.getElementById("phoneField").value;
 
-    if(contacLastName === "" || contacLastName === "" || contactEmail === "" || contatPhone === "") return;
+
+    if (contacLastName === "" || contacLastName === "" || contactEmail === "" || contatPhone === "") return;
 
     let newUserInfoPayload = JSON.stringify({
         FirstName: contactFirstName,
@@ -110,37 +113,71 @@ function addContact() {
     }
 }
 
-function refreshContacts(){
+function getColor() {
+    // Generate random HSL values with lower saturation and a darker lightness
+    const hue = Math.floor(Math.random() * 360); // Hue component (0-359)
+    const saturation = Math.floor(Math.random() * 50) + 50; // Saturation component (50-100)
+    const lightness = Math.floor(Math.random() * 20) + 40; // Lightness component (40-60)
 
-    var list = document.getElementById("contacts");
-    list.innerHTML = '<li id="1" class="mini-contact"><a>John Smith</a><div class="icons"><div class="icon"><span class="fa-solid fa-phone"></span></div></div></li><li id="1" class="mini-contact"><a>John Smith</a><div class="icons"><div class="icon"><span class="fa-solid fa-star"></span></div></div></li>';
-    
-    for(var contact of contacts){
-        let mini = document.createElement('li');
-        mini.className = "mini-contact";
-        let aTag = document.createElement('a');
-        aTag.innerHTML = contact.FirstName + " " + contact.LastName;
-        mini.appendChild(aTag);
-        list.appendChild(mini);
-    }
-    for(var contact of contacts){
-        let mini = document.createElement('li');
-        mini.className = "mini-contact";
-        let aTag = document.createElement('a');
-        aTag.innerHTML = contact.FirstName + " " + contact.LastName;
-        mini.appendChild(aTag);
-        list.appendChild(mini);
-    }
+    // Convert HSL to a CSS color string
+    const pastelColor = `hsl(${hue},${saturation}%,${lightness}%)`;
+
+    return pastelColor;
 }
 
-function searchContact() {
-    contacts = [];
-    let srch = $("#search-contact").val();
+const displayContact = (conttact_id) => {
 
-    let tmp = {
-        search: srch, 
-        UserID: userId
-    };
+    // for (const [key, value] of contactsMap.entries()) {
+    //     console.log(key, value);
+    // }
+    var cur_contact = contactsMap.get(conttact_id);
+    var contact_FirstName = cur_contact.FirstName[0].toUpperCase() + cur_contact.FirstName.substring(1);
+    var contact_LastName = cur_contact.LastName[0].toUpperCase() + cur_contact.LastName.substring(1);
+    var contact_Email = cur_contact.FirstName;
+    var contact_Phone = cur_contact.FirstName;
+
+
+    $('.profile-img').css({ "background-color": getColor() });
+    $('.initials').text(contact_FirstName[0] + "" + contact_LastName[0]);
+
+    $("#profile-name").text(contact_FirstName + " " + contact_LastName);
+    $("#profile-email").text(contact_Email);
+    $("#profile-phone-num").text(contact_Phone);
+
+}
+
+function refreshContacts() {
+
+    contactsMap = new Map();
+    var list = document.getElementById("contacts");
+
+    list.innerHTML = '<div class="searchbar-behind-box">';
+    for (var contact of contacts) {
+        let mini = document.createElement('li');
+        mini.className = "mini-contact";
+        mini.setAttribute('id', contact.ID);
+        contactsMap.set(contact.ID, contact);
+        let aTag = document.createElement('a');
+        aTag.innerHTML = contact.FirstName + " " + contact.LastName;
+        mini.appendChild(aTag);
+        if (true) mini.innerHTML += '<div class="icons"><div class="icon"><span class="fa-solid fa-star"></span></div></div>';
+        list.appendChild(mini);
+    }
+    list.innerHTML += '<div class="searchbar-behind-box"></div>';
+
+    $('.mini-contact').click(function () {
+        displayContact($(this).attr("id"));
+    });
+}
+
+function searchContact(srch) {
+    contacts = [];
+
+    $('#search-loader').css({ "display": "flex" });
+
+    let tmp = { search: srch, UserID: userId };
+    
+
     let jsonPayload = JSON.stringify(tmp);
     let url = urlBase + '/SearchContacts.' + extension;
 
@@ -162,10 +199,10 @@ function searchContact() {
     }
 
 }
-function showProfileContainer(){
+function showProfileContainer() {
     document.getElementById('profileContainer').style.display = "block";
 }
 
-function hideProfileContainer(){
+function hideProfileContainer() {
     document.getElementById('profileContainer').style.display = "none";
 }
