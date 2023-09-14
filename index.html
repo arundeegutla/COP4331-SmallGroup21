@@ -13,16 +13,18 @@
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
         crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <script src="https://kit.fontawesome.com/6625714bc9.js" crossorigin="anonymous"></script>
+
     <link rel='stylesheet' type='text/css' media='screen' href='css/welcome.css'>
     <script src='js/welcome.js'></script>
 </head>
 
 <body>
 
-    <!-- <div class="bg-image">
-        <img src="https://source.unsplash.com/random/?dark" width="100%" height="100%" />
+    <div class="bg-image">
+        <img src="/images/bg-image6.jpg" width="100%" height="100%" />
         <div class="effect"></div>
-    </div> -->
+    </div>
 
     <div class="loader">
         <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -57,30 +59,54 @@
         </div>
     </section>
 
-
     <div id="modal-container">
         <div class="modal-background">
             <div class="modal modal-container" id="modal">
                 <!-- sign up -->
+                <div id="close-xicon" class="icons xicon">
+                    <div class="icon"><span class="fa-solid fa-circle-xmark"></span></div>
+                </div>
                 <div class="form-container sign-up-container">
                     <form id="signup-form" class="login" autocomplete="on">
                         <h1>Sign Up</h1>
-                        <input type="text" id="fname" name="fname" placeholder="First Name">
-                        <input type="text" id="lname" name="lname" placeholder="Last Name">
-                        <input type="text" id="new-uname" name="username" placeholder="Username">
-                        <input type="password" id="new-pswd" name="new-password" placeholder="Password"
-                            autocomplete="new-password">
-                        <button type="button" class="login-btn" onclick="createNewUser()">Sign Up</button>
+
+                        <div class="input-group">
+                            <input type="text" id="fname" name="fname" required="">
+                            <label>First Name</label>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" id="lname" name="lname" required="">
+                            <label>Last Name</label>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" id="new-uname" name="username" required="">
+                            <label>Username</label>
+                        </div>
+                        <div class="input-group">
+                            <input type="password" id="new-pswd" name="new-password" autocomplete="new-password" required="">
+                            <label>Password</label>
+                        </div>
+
+                    
+                        <button type="button" class="boxy-btn" onclick="createNewUser()">Sign Up</button>
                     </form>
                 </div>
+
+
                 <!-- sign in -->
                 <div class="form-container sign-in-container">
                     <form id="login-form" class="login" autocomplete="on">
                         <h1>Log In</h1>
-                        <input type="text" id="username" name="username" placeholder="Username">
-                        <input type="password" id="cur-password" name="current-password" placeholder="Password"
-                            autocomplete="current-password">
-                        <button type="button" class="login-btn" onclick="userLogin()">Log In</button>
+                        <div class="input-group">
+                            <input type="text" id="username" name="username" required="">
+                            <label>Username</label>
+                        </div>
+                        <div class="input-group">
+                            <input type="password" id="cur-password" name="current-password" autocomplete="current-password" required="">
+                            <label>Password</label>
+                        </div>
+                        
+                        <button type="button" class="boxy-btn" onclick="userLogin()">Log In</button>
                     </form>
                 </div>
                 <!-- overlays -->

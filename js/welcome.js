@@ -15,7 +15,7 @@ $(document).ready(function() {
         $('body').addClass('modal-active');
         $('.xbackground').show();
     });
-    $('#close-modal').click(function () {
+    $('#close-modal, #close-xicon').click(function () {
         $('#modal-container').addClass('out');
         $("#modal-container").css("display", "none");
         $('body').removeClass('modal-active');

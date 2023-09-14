@@ -16,6 +16,7 @@
     <script src="https://kit.fontawesome.com/6625714bc9.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
 
+
     <link rel='stylesheet' type='text/css' media='screen' href='css/main.css'>
     <script src='js/main.js'></script>
 </head>
@@ -23,7 +24,7 @@
 <body>
 
     <div class="bg-image">
-        <img src="https://source.unsplash.com/random/?dark" width="100%" height="100%" />
+        <img src="/images/bg-image6.jpg" width="100%" height="100%" />
         <div class="effect"></div>
     </div>
 
@@ -47,9 +48,11 @@
     <nav class="navbar">
         <div class="container">
             <a class="logo" href="index.html">Contacts</a>
-            <a id="user-name">Arun Deegutla</a>
+            <div class="current-user-info">
+                <a id="user-name">Arun Deegutla</a>
+            </div>
             <ul class="nav-links">
-                <li id="log-out-btn" class="nav-item nav-link">
+                <li id="log-out-btn" class="fa-solid fa-right-from-bracket nav-item nav-link">
                     <span>Log out</span>
                 </li>
             </ul>
@@ -57,86 +60,156 @@
     </nav>
 
 
+    <!-- Adding pop-up -->
+    <div id="contact-modal" class="modal-section">
+        <div class="modal-background">
+            <div class="modal modal-container" id="modal">
+                Add Contact
+
+                <div class="icons xicon">
+                    <div class="icon"><span class="fa-solid fa-circle-xmark"></span></div>
+                </div>
+
+                <form id="profile-first-name-field" role="firstNameField">
+                    <input id="firstNameField" type="firstNameField" placeholder="First Name" />
+                </form>
+
+                <form id="profile-last-name-field" role="lastNameField">
+                    <input id="lastNameField" type="lastNameField" placeholder="Last Name" />
+                </form>
+
+                <form id="profile-email-field" role="emailField">
+                    <input id="emailField" type="emailField" placeholder="Email" />
+                </form>
+
+                <form id="profile-phone-field" role="phoneField">
+                    <input id="phoneField" type="phoneField" placeholder="Phone" />
+                </form>
+
+                <button id="add-contact-submit" type="button" class="boxy-btn">Add Contact</button>
+
+            </div>
+        </div>
+        <!-- blur background -->
+        <div class="xbackground" id="close-modal"></div>
+    </div>
+
+
+    <!-- Editing pop-up -->
+    <div id="edit-modal" class="modal-section">
+        <div class="modal-background">
+            <div class="modal modal-container" id="modal">
+                Edit Contact
+
+                <div class="icons xicon">
+                    <div class="icon"><span class="fa-solid fa-circle-xmark"></span></div>
+                </div>
+
+                <form id="profile-first-name-field" role="firstNameField">
+                    <input id="first-name-edit-field" type="firstNameField" placeholder="First Name" />
+                </form>
+
+                <form id="profile-last-name-field" role="lastNameField">
+                    <input id="last-name-edit-field" type="lastNameField" placeholder="Last Name" />
+                </form>
+
+                <form id="profile-email-field" role="emailField">
+                    <input id="email-edit-field" type="emailField" placeholder="Email" />
+                </form>
+
+                <form id="profile-phone-field" role="phoneField">
+                    <input id="phone-edit-field" type="phoneField" placeholder="Phone" />
+                </form>
+
+                <button id="edit-contact-submit" type="button" class="boxy-btn">Edit Contact</button>
+
+            </div>
+        </div>
+        <!-- blur background -->
+        <div class="xbackground" id="close-edit-modal"></div>
+    </div>
+
 
     <section class="home" id="home-section">
         <div class="container">
 
             <!-- Left container -->
             <div class="contacts-container">
-
                 <div class="contacts">
-
                     <!-- Search Box -->
                     <form id="contact-search-box" role="search">
                         <input id="search-contact" type="search" placeholder="Search" />
+                        <span id="get-all-contacts-btn" class="fa-solid fa-circle-down nav-item"></span>
                     </form>
 
-                    <!-- IGNORE -->
-
+                    <div class="no-contacts-box">
+                        <div class="loader-17"></div>
+                        <h3>Search Contacts</h3>                        
+                    </div>
                     <!-- Contacts List -->
-                    <ul id="contacts">
+                    <ul id="contacts" style="display: none;">
                         <div class="searchbar-behind-box"></div>
                     </ul>
                 </div>
-
-                <div class="footer-container">
+                <div id="add-contact" class="footer-container right">
                     <span class="fa-solid fa-plus nav-item pop-up"></span>
                 </div>
-
             </div>
 
             <!-- Right container -->
             <div class="profile-container" id="profileContainer">
 
-                <div class="header">
-                    <div class="profile-img">
-                        <div class="initials">
-                            AD
+                <div class="no-profile">
+
+                    <h3>No contact selected</h3>
+
+                </div>
+
+                <div class="profile">
+                    <div class="header">
+                        <div class="profile-img">
+                            <div class="initials">
+                                AD
+                            </div>
+                        </div>
+                        <div id="profile-name" class="profile-name">
+                            Arun Deegutla
                         </div>
                     </div>
-                    <div id="profile-name" class="profile-name">
-                        Arun Deegutla
+
+                    <div class="content">
+                        <ul class="profile-info-list">
+
+                            <li class="profile-info">
+                                <div class="icons">
+                                    <div class="icon"><span class="fa-solid fa-phone"></span></div>
+                                </div>
+                                <div id="profile-phone-num" class="info">+1(954) 553-4243</div>
+                            </li>
+
+                            <li class="profile-info">
+                                <div class="icons">
+                                    <div class="icon"><span class="fa-solid fa-envelope"></span></div>
+                                </div>
+                                <div id="profile-email" class="info">arundeegutla@gmail.com</div>
+                            </li>
+                        </ul>
                     </div>
+
+                    <div class="footer-container">
+                        <span id="edit-contact-btn" class="fa-solid fa-pen nav-item pop-up"></span>
+                        <span class="fa-solid fa-trash-can nav-item red pop-up"></span>
+                    </div>
+
                 </div>
-
-                <div class="content">
-                    <ul class="profile-info-list">
-
-                        <li class="profile-info">
-                            <div class="icons"><div class="icon"><span class="fa-solid fa-phone"></span></div></div>
-                            <div id="profile-phone-num" class="info">+1(954)553-4243</div>
-                        </li>
-
-                        <li class="profile-info">
-                            <div class="icons"><div class="icon"><span class="fa-solid fa-envelope"></span></div></div>
-                            <div id="profile-email" class="info">arundeegutla@gmail.com</div>
-                        </li>
-
-                        <li class="profile-info">
-                            <div class="icons"><div class="icon"><span class="fa-brands fa-instagram"></span></div></div>
-                            <div id="profile-instagram" class="info">@arun.deegutla</div>
-                        </li>
-
-                    </ul>
-                </div>
-
-                <div class="footer-container">
-                    <span class="fa-solid fa-pen nav-item pop-up"></span>
-                    <span class="fa-solid fa-trash-can nav-item red pop-up"></span>
-                </div>
-                <!-- <div style="display: inline-block;">
-                    <h1 id="profile-first-name">Arun</h1>
-                    <h1 id="profile-last-name">Deegutla</h1>
-                </div>
-
-                <a id="profile-phone">+1(954)553-4243</a>
-                <a id="profile-first-name">arundeegutla@gmail.com</a> -->
-
-
             </div>
+
+
 
         </div>
     </section>
+
+
 
 </body>
 
