@@ -7,7 +7,7 @@ let firstName = "";
 let lastName = "";
 var contacts;
 var contactsMap;
-
+var cur_contact_id;
 
 $(document).ready(function () {
     readCookie();
@@ -36,6 +36,10 @@ $(document).ready(function () {
         $(".home .container .profile-container").css({ "display": "block" });
     });
 
+    $("#delete-contact-btn").click(function () {
+        $(".delete-container-parent").css({ "display": "flex" });
+    });
+   
 });
 
 
@@ -113,6 +117,31 @@ function addContact() {
     }
 }
 
+function deleteContact(contact_id) {
+
+    let currentUserInfoPayload = JSON.stringify({
+        ID: contact_id
+    });
+
+    let url = urlBase + '/DeleteContact.' + extension;
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    try {
+        xhr.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                searchContact();
+            }
+        };
+        xhr.send(currentUserInfoPayload);
+    }
+    catch (err) {
+       // document.getElementById("contactAddResult").innerHTML = err.message;
+    }
+
+}
+
 function getColor() {
     // Generate random HSL values with lower saturation and a darker lightness
     const hue = Math.floor(Math.random() * 360); // Hue component (0-359)
@@ -127,9 +156,8 @@ function getColor() {
 
 const displayContact = (conttact_id) => {
 
-    // for (const [key, value] of contactsMap.entries()) {
-    //     console.log(key, value);
-    // }
+    cur_contact_id = conttact_id;
+
     var cur_contact = contactsMap.get(conttact_id);
     var contact_FirstName = cur_contact.FirstName[0].toUpperCase() + cur_contact.FirstName.substring(1);
     var contact_LastName = cur_contact.LastName[0].toUpperCase() + cur_contact.LastName.substring(1);
@@ -144,7 +172,12 @@ const displayContact = (conttact_id) => {
     $("#profile-email").text(contact_Email);
     $("#profile-phone-num").text(contact_Phone);
 
-}
+    $("#delete-confirm").click(function () {
+        deleteContact(cur_contact_id);
+    });
+
+
+}   
 
 function refreshContacts() {
 
