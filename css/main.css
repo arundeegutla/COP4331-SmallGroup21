@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
+@font-face {
+    font-family: "StyledFont";
+    src: url("/css/fonts/webfontkit-20230918-153159/naturebeautypersonaluse-9y2dk-webfont.woff") format("woff"),
+}
+
 *,
 *:after,
 *:before {
@@ -68,7 +73,9 @@ body {
 input[type="search"]::-webkit-search-decoration,
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-results-button,
-input[type="search"]::-webkit-search-results-decoration { display: none; }
+input[type="search"]::-webkit-search-results-decoration {
+    display: none;
+}
 
 html.modal-active,
 body.modal-active {
@@ -91,10 +98,8 @@ body.modal-active {
     width: 100%;
     height: 100%;
     position: absolute;
-    backdrop-filter: sepia(0.3) blur(10px);
-    -webkit-backdrop-filter: sepia(0.3) blur(10px);
 
-    background-color: rgba(0, 0, 0, 0.415);
+    background-color: rgba(0, 0, 0, 0.578);
     backdrop-filter: blur(26px);
     -webkit-backdrop-filter: blur(26px);
 
@@ -149,6 +154,12 @@ svg rect {
     transition: all 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
 }
 
+.navbar .logo span {
+    font-weight: normal;
+    font-family: StyledFont;
+    font-size: 25px;
+}
+
 .navbar .logo:hover,
 .navbar .logo:focus {
     color: rgba(255, 255, 255, 0.5);
@@ -192,6 +203,11 @@ svg rect {
     touch-action: manipulation;
     height: fit-content;
     margin: 5px;
+
+    -webkit-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+    transition: all 0.2s ease, -webkit-transform 0.2s ease;
 }
 
 .nav-item:hover {
@@ -226,6 +242,8 @@ svg rect {
     background-color: #6c6c6c74;
     padding: 10px 20px;
     border-radius: 1000px;
+    border: #007bff;
+    border-width: 10px;
 }
 
 .home {
@@ -271,6 +289,13 @@ svg rect {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+}
+
+@keyframes fadeInUp {
+    to {
+        /* transform: translateY(0); */
+        opacity: 1;
+    }
 }
 
 .mini-contact .icons {
@@ -348,10 +373,11 @@ svg rect {
     -webkit-backdrop-filter: blur(20px);
 }
 
-.footer-container.right{
+.footer-container.right {
     justify-content: flex-end;
 }
-.footer-container.left{
+
+.footer-container.left {
     justify-content: flex-start;
 }
 
@@ -380,7 +406,8 @@ form#contact-search-box input[type=search] {
 
     outline: 0;
     font-size: 0.8rem;
-    color: var(--black);
+    color: white;
+
     border: 0;
     background-color: transparent;
     padding: 0 1rem;
@@ -398,7 +425,6 @@ form#contact-search-box input[type=search] {
 }
 
 form#contact-search-box input:focus {
-    color: white;
     background-color: rgba(255, 255, 255, 0.091);
 }
 
@@ -577,6 +603,11 @@ form#profile-phone-fieldinput:focus {
     padding-right: 20px;
 }
 
+.contacts::-webkit-scrollbar {
+    display: none;
+}
+
+
 .contacts ul {
     list-style: none;
     padding: 0;
@@ -585,6 +616,7 @@ form#profile-phone-fieldinput:focus {
 }
 
 .contacts ul li {
+
     padding: 0px 4px 0 20px;
     display: flex;
     align-items: center;
@@ -597,7 +629,7 @@ form#profile-phone-fieldinput:focus {
     transition: all 0.2s ease-in;
     transition: all 0.2s ease-in, -webkit-transform 0.2s ease-in;
     border-radius: 20px;
-
+    margin-top: 5px;
 }
 
 
@@ -605,7 +637,13 @@ form#profile-phone-fieldinput:focus {
 .contacts ul li:hover {
     cursor: pointer;
     background-color: #a0a5aa6c;
+}
 
+.contacts ul li.active {
+    cursor: pointer;
+    background-color: #ffffff;
+    color: black;
+    font-size: 19px;
 }
 
 .profile {
@@ -717,8 +755,8 @@ form#profile-phone-fieldinput:focus {
 
 
 .modal-section .modal-background .modal {
-    width: 50vw;
-    height: 60vh;
+    width: fit-content;
+    height: fit-content;
 
     background: var(--black);
     box-shadow: 0 0 17px 10px rgb(0 0 0 / 30%);
@@ -736,30 +774,34 @@ form#profile-phone-fieldinput:focus {
     justify-content: right;
     padding: 10px;
 
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-weight: 300;
     position: relative;
+
+    transition: all 0.6s ease-in-out;
+
 }
 
 
 
-.login {
+.form-object {
     background-color: var(--black);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    height: 100%;
     text-align: center;
     color: white;
 }
 
-.login h3.title {
+.form-object h3.title {
     color: black;
     margin: 15px 0;
 }
 
-.login input {
+/* .form-object input {
     background: none;
     border: none;
     outline: none;
@@ -774,10 +816,55 @@ form#profile-phone-fieldinput:focus {
     padding: 0 15px;
     margin: 5px 0;
 
+} */
+
+.input-group {
+    position: relative;
+    width: 100%;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 20px 0 10px 0;
+    font-size: 16px;
+    color: #ffffff;
+    margin-bottom: 2px;
+    border: none;
+    border-bottom: 2px solid #ffffff2f;
+    outline: none;
+    background: transparent;
+    transition: all .3s ease;
+}
+
+.input-group label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #979797;
+    pointer-events: none;
+    transition: .5s ease;
+}
+
+.input-group input:focus,
+.input-group input:valid {
+    border-bottom: 2px solid #ffffff80;
+
 }
 
 
-.login input .required {
+.input-group input:focus~label,
+.input-group input:valid~label {
+    top: -10px;
+    left: 0;
+    color: rgb(150, 148, 148);
+    font-size: 12px;
+}
+
+
+
+.form-object input .required {
     border-width: thick;
     border-color: red;
 }
@@ -891,7 +978,7 @@ input[id=radio-3]:checked~.glider {
 
 .modal-section {
     position: fixed;
-    display: table;
+    display: flex;
     height: 100%;
     width: 100%;
     top: 0;
@@ -981,16 +1068,21 @@ input[id=radio-3]:checked~.glider {
         0 10px 10px rgba(0, 0, 0, 0.22);
     position: relative;
     overflow: hidden;
-    width: 768px;
-    max-width: 100%;
+    width: fit-content;
     min-height: 480px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
 }
 
+
 .form-container {
-    position: absolute;
-    top: 0;
     height: 100%;
     transition: all 0.6s ease-in-out;
+    width: 80%;
+    margin: 20px 100px;
 }
 
 .sign-in-container {
@@ -999,23 +1091,6 @@ input[id=radio-3]:checked~.glider {
     z-index: 2;
 }
 
-.modal-container.right-panel-active .sign-in-container {
-    transform: translateX(100%);
-}
-
-.sign-up-container {
-    left: 0;
-    width: 50%;
-    opacity: 0;
-    z-index: 1;
-}
-
-.modal-container.right-panel-active .sign-up-container {
-    transform: translateX(100%);
-    opacity: 1;
-    z-index: 5;
-    animation: show 0.6s;
-}
 
 @keyframes show {
 
@@ -1031,73 +1106,6 @@ input[id=radio-3]:checked~.glider {
         z-index: 5;
     }
 }
-
-.overlay-container {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 50%;
-    height: 100%;
-    overflow: hidden;
-    transition: transform 0.6s ease-in-out;
-    z-index: 9;
-}
-
-.modal-container.right-panel-active .overlay-container {
-    transform: translateX(-100%);
-}
-
-.overlay {
-    background: rgb(137, 161, 164);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: 0 0;
-
-    color: #FFFFFF;
-    position: relative;
-    left: -100%;
-    height: 100%;
-    width: 200%;
-    transform: translateX(0);
-    transition: transform 0.6s ease-in-out;
-}
-
-.modal-container.right-panel-active .overlay {
-    transform: translateX(50%);
-}
-
-.overlay-panel {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 0 40px;
-    text-align: center;
-    top: 0;
-    height: 100%;
-    width: 50%;
-    transform: translateX(0);
-    transition: transform 0.6s ease-in-out;
-}
-
-.overlay-left {
-    transform: translateX(-20%);
-}
-
-.modal-container.right-panel-active .overlay-left {
-    transform: translateX(0);
-}
-
-.overlay-right {
-    right: 0;
-    transform: translateX(0);
-}
-
-.modal-container.right-panel-active .overlay-right {
-    transform: translateX(20%);
-}
-
 
 .contacts .no-contacts-box {
     width: 100%;
