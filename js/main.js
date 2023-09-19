@@ -9,6 +9,7 @@ var contacts, contactsMap, colorMap, cur_contact_id = -1;
 
 $(document).ready(function () {
     readCookie();
+    searchContact();
     colorMap = new Map();
     $('#log-out-btn').click(function () {
         logout();
@@ -37,6 +38,12 @@ $(document).ready(function () {
     $('#get-all-contacts-btn').click(function(){
         $("#search-contact").val("");
         searchContact('get:all')
+    });
+    $("#delete-contact-btn").click(function () {
+        $(".delete-container-parent").css({ "display": "flex" });
+    });
+    $('.delete-cancel').click(function(){
+        $(".delete-container-parent").css({ "display": "none" });
     });
 });
 
@@ -160,6 +167,8 @@ const editContact = (contact_json) => {
     }
 }
 
+
+
 const displayContact = (contact_id) => {
 
     $('#' + cur_contact_id).removeClass('active');
@@ -185,6 +194,10 @@ const displayContact = (contact_id) => {
         $('body').addClass('modal-active');
         $('.xbackground').show();
         prefillCurContact();
+    });
+
+    $("#delete-confirm").click(function () {
+        deleteContact(cur_contact_id);
     });
 
     $('.no-profile').css({'display':'none'});
@@ -244,13 +257,33 @@ const refreshContacts = () => {
     });
 }
 
+const deleteContact = (contact_id) => {
+    $(".delete-container-parent").css({ "display": "none" });
+    let currentUserInfoPayload = JSON.stringify({ID: contact_id});
+    let url = urlBase + '/DeleteContact.' + extension;
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    try {
+        xhr.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                searchContact();
+            }
+        };
+        xhr.send(currentUserInfoPayload);
+    }
+    catch (err) {
+       // document.getElementById("contactAddResult").innerHTML = err.message;
+    }
+}
+
 const searchContact = (srch) => {
     contacts = [];
-    if(srch === "" || srch === "" || srch == undefined || srch.length < 1){
-        refreshContacts();
-        $('#search-status').text('Search Contacts');
-        return;
-    }
+    // if(srch === "" || srch === "" || srch == undefined || srch.length < 1){
+    //     refreshContacts();
+    //     $('#search-status').text('Search Contacts');
+    //     return;
+    // }
 
     if(srch === 'get:all') srch = '';
     let searchUser = JSON.stringify({ 

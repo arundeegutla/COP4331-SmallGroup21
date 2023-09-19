@@ -24,7 +24,7 @@
 <body>
 
     <div class="bg-image">
-        <img src="/images/bg-image6.jpg" width="100%" height="100%" />
+        <img src="/images/bg-image10.jpg" width="100%" height="100%" />
         <div class="effect"></div>
     </div>
 
@@ -89,7 +89,7 @@
                             <label>Phone Number</label>
                         </div>
 
-                    
+
                         <button id="add-contact-submit" type="button" class="boxy-btn">Add</button>
                     </form>
                 </div>
@@ -130,7 +130,7 @@
                             <label>Phone Number</label>
                         </div>
 
-                    
+
                         <button id="edit-contact-submit" type="button" class="boxy-btn">Edit</button>
                     </form>
                 </div>
@@ -206,11 +206,24 @@
                                 <div id="profile-email" class="info">arundeegutla@gmail.com</div>
                             </li>
                         </ul>
+
+                        <div class="delete-container-parent">
+                            <div class="delete-form-popup" id="myForm">
+                                <form class="delete-form-container">
+                                    <h1>Are you sure?</h1>
+                                    <button type="button" class="delete-confirm" id="delete-confirm">
+                                        Delete
+                                    </button>
+                                    <button type="button" class="delete-cancel">Cancel</button>
+                                </form>
+                            </div>
+                        </div>
+
                     </div>
 
                     <div class="footer-container">
                         <span id="edit-contact-btn" class="fa-solid fa-pen nav-item pop-up"></span>
-                        <span class="fa-solid fa-trash-can nav-item red pop-up"></span>
+                        <span id="delete-contact-btn" class="fa-solid fa-trash-can nav-item red pop-up"></span>
                     </div>
 
                 </div>
