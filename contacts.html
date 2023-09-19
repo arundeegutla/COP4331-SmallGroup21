@@ -24,7 +24,7 @@
 <body>
 
     <div class="bg-image">
-        <img src="/images/bg-image6.jpg" width="100%" height="100%" />
+        <img src="/images/bg-image10.jpg" width="100%" height="100%" />
         <div class="effect"></div>
     </div>
 
@@ -47,7 +47,7 @@
 
     <nav class="navbar">
         <div class="container">
-            <a class="logo" href="index.html">Contacts</a>
+            <a class="logo" href="index.html">Contact<span>Hub</span></a>
             <div class="current-user-info">
                 <a id="user-name">Arun Deegutla</a>
             </div>
@@ -64,69 +64,81 @@
     <div id="contact-modal" class="modal-section">
         <div class="modal-background">
             <div class="modal modal-container" id="modal">
-                Add Contact
-
                 <div class="icons xicon">
                     <div class="icon"><span class="fa-solid fa-circle-xmark"></span></div>
                 </div>
+                <div class="form-container">
+                    <h2>Add Contact</h2>
 
-                <form id="profile-first-name-field" role="firstNameField">
-                    <input id="firstNameField" type="firstNameField" placeholder="First Name" />
-                </form>
+                    <form id="add-form" class="form-object" autocomplete="on">
 
-                <form id="profile-last-name-field" role="lastNameField">
-                    <input id="lastNameField" type="lastNameField" placeholder="Last Name" />
-                </form>
+                        <div class="input-group">
+                            <input type="text" id="add-first-name-field" name="fname" required="">
+                            <label>First Name</label>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" id="add-last-name-field" name="lname" required="">
+                            <label>Last Name</label>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" id="add-email-field" name="email" required="">
+                            <label>Email</label>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" id="add-phone-field" required="">
+                            <label>Phone Number</label>
+                        </div>
 
-                <form id="profile-email-field" role="emailField">
-                    <input id="emailField" type="emailField" placeholder="Email" />
-                </form>
 
-                <form id="profile-phone-field" role="phoneField">
-                    <input id="phoneField" type="phoneField" placeholder="Phone" />
-                </form>
-
-                <button id="add-contact-submit" type="button" class="boxy-btn">Add Contact</button>
+                        <button id="add-contact-submit" type="button" class="boxy-btn">Add</button>
+                    </form>
+                </div>
 
             </div>
         </div>
         <!-- blur background -->
-        <div class="xbackground" id="close-modal"></div>
+        <div class="xbackground"></div>
     </div>
 
 
-    <!-- Editing pop-up -->
+    <!-- Edit pop-up -->
     <div id="edit-modal" class="modal-section">
         <div class="modal-background">
             <div class="modal modal-container" id="modal">
-                Edit Contact
-
                 <div class="icons xicon">
                     <div class="icon"><span class="fa-solid fa-circle-xmark"></span></div>
                 </div>
+                <div class="form-container">
+                    <h2>Edit Contact</h2>
 
-                <form id="profile-first-name-field" role="firstNameField">
-                    <input id="first-name-edit-field" type="firstNameField" placeholder="First Name" />
-                </form>
+                    <form id="edit-form" class="form-object" autocomplete="on">
 
-                <form id="profile-last-name-field" role="lastNameField">
-                    <input id="last-name-edit-field" type="lastNameField" placeholder="Last Name" />
-                </form>
+                        <div class="input-group">
+                            <input type="text" id="edit-first-name-field" name="fname" required="">
+                            <label>First Name</label>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" id="edit-last-name-field" name="lname" required="">
+                            <label>Last Name</label>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" id="edit-email-field" name="username" required="">
+                            <label>Email</label>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" id="edit-phone-field" required="">
+                            <label>Phone Number</label>
+                        </div>
 
-                <form id="profile-email-field" role="emailField">
-                    <input id="email-edit-field" type="emailField" placeholder="Email" />
-                </form>
 
-                <form id="profile-phone-field" role="phoneField">
-                    <input id="phone-edit-field" type="phoneField" placeholder="Phone" />
-                </form>
-
-                <button id="edit-contact-submit" type="button" class="boxy-btn">Edit Contact</button>
+                        <button id="edit-contact-submit" type="button" class="boxy-btn">Edit</button>
+                    </form>
+                </div>
 
             </div>
         </div>
         <!-- blur background -->
-        <div class="xbackground" id="close-edit-modal"></div>
+        <div class="xbackground"></div>
     </div>
 
 
@@ -144,7 +156,7 @@
 
                     <div class="no-contacts-box">
                         <div class="loader-17"></div>
-                        <h3>Search Contacts</h3>                        
+                        <h4 id="search-status">Search Contacts</h4>
                     </div>
                     <!-- Contacts List -->
                     <ul id="contacts" style="display: none;">
@@ -194,11 +206,24 @@
                                 <div id="profile-email" class="info">arundeegutla@gmail.com</div>
                             </li>
                         </ul>
+
+                        <div class="delete-container-parent">
+                            <div class="delete-form-popup" id="myForm">
+                                <form class="delete-form-container">
+                                    <h1>Are you sure?</h1>
+                                    <button type="button" class="delete-confirm" id="delete-confirm">
+                                        Delete
+                                    </button>
+                                    <button type="button" class="delete-cancel">Cancel</button>
+                                </form>
+                            </div>
+                        </div>
+
                     </div>
 
                     <div class="footer-container">
                         <span id="edit-contact-btn" class="fa-solid fa-pen nav-item pop-up"></span>
-                        <span class="fa-solid fa-trash-can nav-item red pop-up"></span>
+                        <span id="delete-contact-btn" class="fa-solid fa-trash-can nav-item red pop-up"></span>
                     </div>
 
                 </div>

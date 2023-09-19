@@ -36,10 +36,10 @@ $(document).ready(function() {
 
 function createNewUser() {
     userId = -1;
-    firstName = document.getElementById("fname").value;
-    lastName = document.getElementById("lname").value;
-    let username = document.getElementById("new-uname").value;
-    let password = document.getElementById("new-pswd").value;
+    firstName = $("#fname").val();
+    lastName = $("#lname").val();
+    let username = $("#new-uname").val();
+    let password = $("#new-pswd").val();
 
     let newUserInfoPayload = JSON.stringify({
         FirstName: firstName,
@@ -145,7 +145,7 @@ function readCookie() {
     }
     
     if (userId >= 0) {
-        window.location.href = "contacts.html"
+        window.location.href = "contacts.html";
     } else {
         $(".loader").css("display", "none");
     }

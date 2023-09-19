@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
+@font-face {
+  font-family: "StyledFont";
+  src: url("/css/fonts/webfontkit-20230918-153159/naturebeautypersonaluse-9y2dk-webfont.woff") format("woff"),
+}
+
 *,
 *:after,
 *:before {
@@ -59,7 +64,7 @@ body {
 body {
   font-family: "Poppins", Arial, sans-serif;
   color: white;
-  /* overflow: hidden; */
+  overflow: hidden;
   background-color: var(--black);
   width: 100%;
   height: 100%;
@@ -144,6 +149,12 @@ svg rect {
   transition: all 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
 }
 
+.navbar .logo span {
+  font-weight: normal;
+  font-family: StyledFont;
+  font-size: 25px;
+}
+
 .navbar .logo:hover,
 .navbar .logo:focus {
   color: rgba(255, 255, 255, 0.5);
@@ -190,9 +201,8 @@ svg rect {
 
 .nav-item:hover {
   /* box-shadow: rgba(44, 187, 99, .35) 0 -25px 18px -14px inset, rgba(44, 187, 99, .25) 0 1px 2px, rgba(44, 187, 99, .25) 0 2px 4px, rgba(44, 187, 99, .25) 0 4px 8px, rgba(44, 187, 99, .25) 0 8px 16px, rgba(44, 187, 99, .25) 0 16px 32px; */
-  padding: 8px 20px;
   color: green;
-
+  font-size: 17px;
 }
 
 .home {
@@ -205,14 +215,14 @@ svg rect {
   display: flex;
   align-items: center;
   transform: translateY(10px);
-    opacity: 0;
-    animation: fadeInUp 0.8s ease-out 0.2s forwards;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out 0.2s forwards;
 }
 
 @keyframes fadeInUp {
   to {
-      transform: translateY(0);
-      opacity: 1;
+    transform: translateY(0);
+    opacity: 1;
   }
 }
 
@@ -316,6 +326,7 @@ svg rect {
   margin: 15px 0;
 }
 
+
 /* .login input {
   background: none;
   border: none;
@@ -340,10 +351,10 @@ svg rect {
 
 .input-group input {
   width: 100%;
-  padding: 20px 0 0px 0;
+  padding: 20px 0 10px 0;
   font-size: 16px;
   color: #ffffff;
-  margin-bottom: 10px;
+  margin-bottom: 2px;
   border: none;
   border-bottom: 2px solid #ffffff;
   outline: none;
@@ -540,8 +551,8 @@ input[id=radio-3]:checked~.glider {
   height: 100vh;
   background-color: transparent;
   top: 0;
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(1px);
+  backdrop-filter: blur(1px);
   left: 0;
   position: fixed;
 }
