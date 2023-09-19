@@ -7,7 +7,8 @@ let firstName = "";
 let lastName = "";
 var contacts, contactsMap, colorMap, cur_contact_id = -1;
 
-$(document).ready(function () {
+
+$(window).on( "load", async function() {     
     readCookie();
     // searchContact();
     colorMap = new Map();
@@ -227,6 +228,7 @@ const refreshContacts = () => {
 
     list.innerHTML = '<div class="searchbar-behind-box">';
     for (const contact of contacts) {    
+        console.log(contact.FirstName);
         let mini = document.createElement('li');
         mini.className = "mini-contact";
         mini.setAttribute('id', contact.ID);
@@ -291,7 +293,8 @@ const searchContact = (srch) => {
         return;
     }
 
-    if(srch === 'get:all') srch = '';
+    var all = srch === 'get:all';
+    if(all) srch = '';
     let searchUser = JSON.stringify({ 
         search: srch, UserID: userId 
     });
@@ -306,13 +309,13 @@ const searchContact = (srch) => {
                 let jsonObject = JSON.parse(xhr.responseText);
                 contacts = jsonObject.results;
                 if(contacts === undefined) contacts = [];
-                contacts.sort(function(a, b){
+                contacts = contacts.sort(function(a, b){
                     if(a.FirstName === b.FirstName)
-                        return a.LastName > b.LastName;
-                    return a.FirstName > b.FirstName;
+                        return (a.LastName < b.LastName ? -1 : 1);
+                    return (a.FirstName < b.FirstName ? -1 : 1);
                 });
                 if(contacts.length < 1) {
-                    $('#search-status').text('No results for ' + srch);
+                    $('#search-status').text(all ? "No Contacts Found" : 'No results for ' + srch);
                 } else {
                     $('#search-status').text('Search Contacts');
                 }

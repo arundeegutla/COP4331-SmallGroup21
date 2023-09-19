@@ -5,9 +5,7 @@ let userId = 0;
 let firstName = "";
 let lastName = "";
 
-
-
-$(document).ready(function() {
+$(window).on( "load", function() { 
     readCookie();
     $('#get-started').click(function () {
         $("#modal-container").css("display", "table");
@@ -31,7 +29,6 @@ $(document).ready(function() {
     $('#login-form').submit(function(){
         userLogin();
     });
-
 });
 
 function createNewUser() {
