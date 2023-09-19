@@ -9,7 +9,7 @@ var contacts, contactsMap, colorMap, cur_contact_id = -1;
 
 $(document).ready(function () {
     readCookie();
-    searchContact();
+    // searchContact();
     colorMap = new Map();
     $('#log-out-btn').click(function () {
         logout();
@@ -45,6 +45,8 @@ $(document).ready(function () {
     $('.delete-cancel').click(function(){
         $(".delete-container-parent").css({ "display": "none" });
     });
+
+    
 });
 
 const closeAllModals = () => {
@@ -195,7 +197,10 @@ const displayContact = (contact_id) => {
         $('.xbackground').show();
         prefillCurContact();
     });
-
+    
+    $('#edit-contact-submit').click(function(){
+        editContactCheck();
+    });
     $("#delete-confirm").click(function () {
         deleteContact(cur_contact_id);
     });
@@ -267,7 +272,7 @@ const deleteContact = (contact_id) => {
     try {
         xhr.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                searchContact();
+                searchContact('get:all');
             }
         };
         xhr.send(currentUserInfoPayload);
@@ -279,11 +284,12 @@ const deleteContact = (contact_id) => {
 
 const searchContact = (srch) => {
     contacts = [];
-    // if(srch === "" || srch === "" || srch == undefined || srch.length < 1){
-    //     refreshContacts();
-    //     $('#search-status').text('Search Contacts');
-    //     return;
-    // }
+    
+    if(srch === "" || srch === "" || srch == undefined || srch.length < 1){
+        refreshContacts();
+        $('#search-status').text('Search Contacts');
+        return;
+    }
 
     if(srch === 'get:all') srch = '';
     let searchUser = JSON.stringify({ 
