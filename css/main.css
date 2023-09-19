@@ -756,7 +756,7 @@ form#profile-phone-fieldinput:focus {
 
 
 .modal-section .modal-background .modal {
-    width: fit-content;
+    width: 400px;
     height: fit-content;
 
     background: var(--black);
