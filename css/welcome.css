@@ -382,11 +382,11 @@ svg rect {
   position: absolute;
   z-index: 1;
   top: 5px;
-  left: 110%;
+  right: -130px;
 }
 
 .input-group .tooltiptext.left {
-  left: -50%;
+  left: -130px;
 }
 
 .input-group .tooltiptext::after {
