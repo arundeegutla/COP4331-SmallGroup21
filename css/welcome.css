@@ -241,7 +241,7 @@ svg rect {
   background: var(--black);
   /* box-shadow: 0 0 17px 10px rgb(0 0 0 / 30%); */
   border-radius: 20px;
-  overflow: hidden;
+  overflow: visible;
   left: 0;
   right: 0;
   -webkit-transform: translateY(-50%);
@@ -319,6 +319,7 @@ svg rect {
   height: 100%;
   text-align: center;
   color: white;
+  border-radius: 20px;
 }
 
 .login h3.title {
@@ -327,25 +328,9 @@ svg rect {
 }
 
 
-/* .login input {
-  background: none;
-  border: none;
-  outline: none;
-
-  margin-left: 0;
-  background: #e6e6e6;
-  height: 40px;
-  display: flex;
-  width: 60%;
-  align-items: center;
-  border-radius: 10px;
-  padding: 0 15px;
-  margin: 5px 0;
-
-} */
-
 .input-group {
   position: relative;
+  display: inline-block;
   width: 80%;
 }
 
@@ -356,7 +341,7 @@ svg rect {
   color: #ffffff;
   margin-bottom: 2px;
   border: none;
-  border-bottom: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff2f;
   outline: none;
   background: transparent;
 }
@@ -372,6 +357,11 @@ svg rect {
   transition: .5s ease;
 }
 
+.input-group input:focus,
+.input-group input:valid {
+  border-bottom: 2px solid #ffffff80;
+}
+
 .input-group input:focus~label,
 .input-group input:valid~label {
   top: -10px;
@@ -381,10 +371,41 @@ svg rect {
 }
 
 
-.login input .required {
-  border-width: thick;
-  border-color: red;
+.input-group .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: rgba(207, 69, 69, 0.843);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  top: 5px;
+  left: 110%;
 }
+
+.input-group .tooltiptext.left {
+  left: -50%;
+}
+
+.input-group .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent rgba(207, 69, 69, 0.843) transparent transparent;
+}
+
+.input-group .left.tooltiptext::after{
+  left: 100%;
+  right: 0;
+  border-color: transparent transparent transparent rgba(207, 69, 69, 0.843);
+}
+
 
 
 .boxy-btn {
@@ -597,6 +618,7 @@ input[id=radio-3]:checked~.glider {
   top: 0;
   height: 100%;
   transition: all 0.6s ease-in-out;
+  border-radius: 20px;
 }
 
 .sign-in-container {
@@ -647,6 +669,7 @@ input[id=radio-3]:checked~.glider {
   overflow: hidden;
   transition: transform 0.6s ease-in-out;
   z-index: 9;
+  border-radius: 20px;
 }
 
 .modal-container.right-panel-active .overlay-container {
@@ -654,7 +677,7 @@ input[id=radio-3]:checked~.glider {
 }
 
 .overlay {
-  background: url("/images/bg-image4.jpg");
+  background: url("https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3174&q=80");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 0 0;

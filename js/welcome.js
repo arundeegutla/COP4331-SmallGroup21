@@ -5,7 +5,7 @@ let userId = 0;
 let firstName = "";
 let lastName = "";
 
-$(window).on( "load", function() { 
+$(window).on( "load", function() {
     readCookie();
     $('#get-started').click(function () {
         $("#modal-container").css("display", "table");
@@ -31,12 +31,40 @@ $(window).on( "load", function() {
     });
 });
 
+const showToolTip = (id, text="Required") => {
+    $(id+"~.tooltiptext").css("visibility", "visible");
+    $(id+"~.tooltiptext").text(text);
+    $(id).focus(function(){
+        $(id+"~.tooltiptext").css("visibility", "hidden");
+    });
+}
+
 function createNewUser() {
     userId = -1;
     firstName = $("#fname").val();
     lastName = $("#lname").val();
     let username = $("#new-uname").val();
     let password = $("#new-pswd").val();
+
+    var ok = true;
+    if(firstName === ""){
+        showToolTip('#fname');
+        ok = false;
+    }
+    if(lastName === ""){
+        showToolTip('#lname');
+        ok = false;
+    }
+    if(username === ""){
+        showToolTip('#new-uname');
+        ok = false;
+    }
+    if(password === ""){
+        showToolTip('#new-pswd');
+        ok = false;
+    }
+
+    if(!ok) return;
 
     let newUserInfoPayload = JSON.stringify({
         FirstName: firstName,
@@ -79,15 +107,25 @@ function userLogin() {
     firstName = "";
     lastName = "";
     
-    let login = document.getElementById("username").value;
-    let password = document.getElementById("cur-password").value;
+    let login = $('#username').val();
+    let password = $('#cur-password').val();
     
-    let tmp = {
+    var ok = true;
+    if(login === ""){
+        showToolTip('#username');
+        ok = false;
+    }
+    if(password === ""){
+        showToolTip('#cur-password');
+        ok = false;
+    }
+    
+    if(!ok) return;
+
+    let jsonPayload = JSON.stringify({
         Username: login,
         Passwd: password
-    };
-    
-    let jsonPayload = JSON.stringify(tmp);
+    });
     
     let url = urlBase + '/Login.' + extension;
     
