@@ -6,11 +6,14 @@ let userId = 0;
 let firstName = "";
 let lastName = "";
 var contacts, contactsMap, colorMap, cur_contact_id = -1;
-
+var curSearch;
 
 $(window).on( "load", async function() {     
     readCookie();
     // searchContact();
+    $(document).on("keydown", "form", function(event) { 
+        return event.key != "Enter";
+    });
     colorMap = new Map();
     $('#log-out-btn').click(function () {
         logout();
@@ -34,11 +37,19 @@ $(window).on( "load", async function() {
     $('#add-contact-submit').click(function(){addContact()});
     $('.xbackground, .xicon').click(function(){closeAllModals()});
     $("#search-contact").on('change paste input', function(){
-        searchContact($("#search-contact").val())
+        curSearch = $("#search-contact").val();
+        searchContact();
+    });
+    $('#search-contact').on('keypress',function(e) {
+        if(e.which == 13) {
+            curSearch = $("#search-contact").val();
+            searchContact();
+        } 
     });
     $('#get-all-contacts-btn').click(function(){
         $("#search-contact").val("");
-        searchContact('get:all')
+        curSearch = 'get:all';
+        searchContact();
     });
     $("#delete-contact-btn").click(function () {
         $(".delete-container-parent").css({ "display": "flex" });
@@ -57,6 +68,14 @@ const closeAllModals = () => {
     $("#edit-modal").css("display", "none");
     $('body').removeClass('modal-active');
     $('.xbackground').hide();
+}
+
+const showToolTip = (id, text="Required") => {
+    $(id+"~.tooltiptext").css("visibility", "visible");
+    $(id+"~.tooltiptext").text(text);
+    $(id).focus(function(){
+        $(id+"~.tooltiptext").css("visibility", "hidden");
+    });
 }
 
 
@@ -95,7 +114,10 @@ const addContact = () => {
     var contactEmail = $("#add-email-field").val();
     var contatPhone = $("#add-phone-field").val();
 
-    if (contacLastName === "" || contacLastName === "" || contactEmail === "" || contatPhone === "") return;
+    if (contactFirstName === ""){
+        showToolTip('#add-first-name-field');
+        return;
+    } 
     closeAllModals();
     let newUserInfoPayload = JSON.stringify({
         FirstName: contactFirstName,
@@ -112,7 +134,7 @@ const addContact = () => {
     try {
         xhr.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                searchContact(contactFirstName);
+                searchContact();
             }
         };
         xhr.send(newUserInfoPayload);
@@ -137,7 +159,10 @@ const editContactCheck = () => {
     var contactEmail = $("#edit-email-field").val();
     var contatPhone = $("#edit-phone-field").val();
 
-    if (contacLastName === "" || contacLastName === "" || contactEmail === "" || contatPhone === "") return;
+    if (contactFirstName === ""){
+        showToolTip('#edit-first-name-field');
+        return;
+    }
 
     var contact = {
         FirstName: contactFirstName,
@@ -160,7 +185,7 @@ const editContact = (contact_json) => {
     try {
         xhr.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200){
-                searchContact(contact_json.FirstName);
+                searchContact();
             }
         };
         xhr.send(EditContactInfoPayload);
@@ -179,10 +204,17 @@ const displayContact = (contact_id) => {
     $('#' + cur_contact_id).addClass('active');
 
     var cur_contact = contactsMap.get(contact_id);
-    var contact_FirstName = cur_contact.FirstName[0].toUpperCase() + cur_contact.FirstName.substring(1);
-    var contact_LastName = cur_contact.LastName[0].toUpperCase() + cur_contact.LastName.substring(1);
+    var contact_FirstName = cur_contact.FirstName;
+    var contact_LastName = cur_contact.LastName;
     var contact_Email = cur_contact.Email;
     var contact_Phone = cur_contact.PhoneNum;
+
+    if(contact_LastName === "") contact_LastName = " ";
+    if(contact_Email === "") contact_Email = "-";
+    if(contact_Phone === "") contact_Phone = "-";
+
+    contact_FirstName = contact_FirstName[0].toUpperCase() + contact_FirstName.substring(1);
+    contact_LastName = contact_LastName[0].toUpperCase() + contact_LastName.substring(1);
 
     $('.profile-img').css({ "background-color": colorMap.get(contact_id) });
     $('.initials').text(contact_FirstName[0] + "" + contact_LastName[0]);
@@ -274,7 +306,7 @@ const deleteContact = (contact_id) => {
     try {
         xhr.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                searchContact('get:all');
+                searchContact();
             }
         };
         xhr.send(currentUserInfoPayload);
@@ -284,17 +316,19 @@ const deleteContact = (contact_id) => {
     }
 }
 
-const searchContact = (srch) => {
+const searchContact = () => {
     contacts = [];
     
-    if(srch === "" || srch === "" || srch == undefined || srch.length < 1){
+    if(curSearch === "" || curSearch === "" || curSearch == undefined || curSearch.length < 1){
         refreshContacts();
         $('#search-status').text('Search Contacts');
         return;
     }
 
+    var srch = curSearch;
     var all = srch === 'get:all';
     if(all) srch = '';
+
     let searchUser = JSON.stringify({ 
         search: srch, UserID: userId 
     });
