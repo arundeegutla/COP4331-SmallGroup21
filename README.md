@@ -1,4 +1,4 @@
-# Contact Manager
+# ContactsHub
 
 Welcome to the Contact Manager repository, a project developed as part of the COP 4331 course at the University of Central Florida (UCF). This contact management application is built using the LAMP (Linux, Apache, MySQL, PHP) stack, providing a robust and scalable solution for managing your contacts.
 
@@ -23,7 +23,7 @@ To set up the Contact Manager on your local machine, follow these steps:
 
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/arundeegutla/ContactManager.git
+   git clone https://github.com/arundeegutla/ContactsHub.git
    ```
 
 2. **Database Setup:**
